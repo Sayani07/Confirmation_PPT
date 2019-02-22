@@ -3,13 +3,11 @@ title: \small Visualisation and analysis of probability distributions of variabl
 author: \small Sayani Gupta
 date: \small \today
 classoption: compress
-toc: false
+toc: true
 output: binb::monash
 header-includes:
     - \input preamble.tex
 ---
-
-
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -19,10 +17,61 @@ library(ggridges)
 library(viridis)
 library(forecast)
 library(lubridate)
-library(rmarkdown)
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=8))
 ```
 
+#  Motivation
+
+## Electricity smart meter technology
+
+- **Consumers:** have access to greater electricity consumption information which can help them manage their electricity usage. They can switch on their hot water heater or do laundry when energy is cheaper, or when your solar system is generating surplus energy and switch off appliances during peak demands.
+
+- **Retailers** can use smart meter data to reduce costs, increase efficiency, improve customer service and also reward households for using less electricity during peak energy periods.
+
+
+<!-- - This helps 'democratise' energy, enabling customers to easily access low cost energy and control different network inputs to optimise their energy use and cost.” -->
+
+
+
+## Volume, Source and Details of Data Available
+
+
+Half hourly interval meter reading (Kwh) of electricity consumption
+
+Resulted in 35 billion half hourly observations per year across all participating households.
+
+Source: Data61, CSIRO
+
+Challenge for visualisation is handling the volume of data supplied by smart meters and derive insights for efficient usage.
+
+# What is EDA? How can it help?
+
+
+# Research goals
+
+## Visualization of probability distributions of deconstructed temporal data
+
+## Visualization of probability distributions of deconstructed spatio- temporal data
+
+## Clustering of spatio-temporal data based on probability distributions
+
+
+- Residential and commercial buildings.
+
+
+
+
+<!-- - Vector says is able to use self-learning techniques to assess and predict a range of network variables including loads, market dynamics, storage, customer demand and capacity. -->
+
+
+
+
+
+
+
+*data source: [US Bureau of Transportation Statistics](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236)*
+
+we're looking at time series analysis from EDA perspective, what data we're going to look at?
 
 #  30 minutes interval smart meter data from Monash Residential Services from April 4, 2018 to May 31, 2018
 
