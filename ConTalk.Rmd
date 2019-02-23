@@ -29,7 +29,8 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 - **Retailers** can use smart meter data to reduce costs, increase efficiency, improve customer service and also reward households for using less electricity during peak energy periods.
 
 
-## Source and description of data available
+---
+
 
 - Source: Data61, CSIRO
 
@@ -39,10 +40,53 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 
 - Trials based in Newcastle, New South Wales, and parts of Sydney CBD, Newington, Ku-Ring-Gai, and the rural township of Scone.
 
+---
+.pull-left[
+
+Source
+--
+
+Description
+--
+
+Time Frame
+--
+
+Spread
+
+]
+
+.pull-right[
+
+Data61, CSIRO
+--
+
+
+Half hourly interval meter reading (Kwh) of electricity consumption
+--
+
+Resulted in 35 billion half hourly observations per year across all participating households.
+--
+
+Trials based in Newcastle, New South Wales, and parts of Sydney CBD, Newington, Ku-Ring-Gai, and the rural township of Scone.
+
+]
+---
+
+---
 
 <!-- Challenge for visualisation is handling the volume of data supplied by smart meters and derive insights for efficient usage. -->
 
 # What is EDA? How can it help?
+
+```{r EDA, echo=FALSE}
+knitr::include_graphics("EDA.png")
+```
+
+
+```{r, out.width="0.3\\linewidth",out.width="100%",include=TRUE, fig.align="center", echo=FALSE}
+knitr::include_graphics("/Users/sgup0008/Documents/MRS_Consumption/B429_files/figure-html/b105_days-1.png")
+```
 
 
 # Research goals
@@ -61,11 +105,39 @@ Data description:  30 minutes interval smart meter data from Monash Residential 
 
 ##Across days
 
-```{r, out.width="0.3\\linewidth",out.width="100%",include=TRUE, fig.align="center", echo=FALSE}
-
-knitr::include_graphics("/Users/sgup0008/Documents/MRS_Consumption/B429_files/figure-html/b105_days-1.png")
-```
----
+<!-- # ```{r, out.width="0.3\\linewidth",out.width="100%",include=TRUE, fig.align="center", echo=FALSE} -->
+<!-- #  -->
+<!-- # # Data_Halls_Residence <-readr::read_rds("DHResidence.rds") -->
+<!-- # #  -->
+<!-- # #  -->
+<!-- # # selected_units <- Data_Halls_Residence %>% filter(Source %in% c("B1 05","B2 15","B3 37", "B4 29", "BG 50")) -->
+<!-- # #  -->
+<!-- # # selected_units$`Timestamp UTC` <-lubridate::ymd_hms(selected_units$`Timestamp UTC`) -->
+<!-- # #  -->
+<!-- # # selected_units_tsibble <- as_tsibble(selected_units,key=id(Source),index=`Timestamp UTC`,tz="UTC") -->
+<!-- # #  -->
+<!-- # #  -->
+<!-- # # vic_holidays <- holiday_aus(2018, state = "VIC") -->
+<!-- #  -->
+<!-- # # SU_uniform_mutate <-selected_units_tsibble  %>% mutate(date = date(`Timestamp UTC`),wday = wday(date, label = TRUE, abbr = TRUE, -->
+<!-- # #                       week_start = 1), -->
+<!-- # #                       month = month(date, label = TRUE, abbr = TRUE), -->
+<!-- # #                       year = year(date), -->
+<!-- # #                       hour = hour(date),work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>% -->
+<!-- # #                         mutate(work = ifelse(date %in% vic_holidays$date, 0, work)) -->
+<!-- #  -->
+<!-- #  -->
+<!-- #  -->
+<!-- # # SU_uniform_mutate %>% filter(Source=="B4 29") %>% -->
+<!-- # #   group_by(date) %>% -->
+<!-- # #   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%  -->
+<!-- # #   ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + -->
+<!-- # #   ylab("Total daily kwh") + -->
+<!-- # #   xlab("") -->
+<!-- #  -->
+<!-- #  -->
+<!-- # # knitr::include_graphics("/Users/sgup0008/Documents/MRS_Consumption/B429_files/figure-html/b105_days-1.png") -->
+<!-- # ``` -->
 
 
 ## Across hours, by day of the week
@@ -108,11 +180,39 @@ Define Harmonies and Clashes
 
 ---
 
-  
 ## Visualization of probability distributions of deconstructed spatio- temporal data
 
 ## Clustering of spatio-temporal data based on probability distributions
 
+
+## Timeline
+```{r timeline, echo=FALSE}
+library(DiagrammeR)
+
+mermaid("
+gantt
+dateFormat  YYYY-MM-DD
+
+section 2019
+Candidature Confirmation      :done,          first_1,    2019-01-01, 2014-02-28
+Research Aim - 1 (Paper)      :active,        first_2,    2019-01-09, 2019-04-30
+Research Aim - 1 (R Package)  :active,        first_3,    2019-01-03, 2019-05-31
+geom_hdr (R Package)          :active,        first_4,    2019-01-04, 2019-06-30
+Internship                    :active,        first_5,    2019-06-01, 2019-07-31
+Research Aim-2                :active         first_6,    2019-07-01, 2019-12-31
+
+section 2020
+Completed, critical task      :crit, done,    import_1,   2014-01-06,24h
+Also done, also critical      :crit, done,    import_2,   after import_1, 2d
+Doing this important task now :crit, active,  import_3,   after import_2, 3d
+Next critical task            :crit,          import_4,   after import_3, 5d
+
+section 2021
+First extras                  :active,        extras_1,   after import_4,  3d
+Second helping                :               extras_2,   after extras_1, 20h
+More of the extras            :               extras_3,   after extras_1, 48h
+")
+```
 
 <!-- ```{r b105_days,echo=FALSE} -->
 
