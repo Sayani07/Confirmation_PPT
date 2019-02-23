@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 
 ## Electricity smart meter technology
 
-- **Consumers:** have access to greater electricity consumption information which can help them manage their electricity usage. They can switch on their hot water heater or do laundry when energy is cheaper, or when your solar system is generating surplus energy and switch off appliances during peak demands.
+- **Consumers:** have access to greater electricity consumption information which can help them manage their electricity usage. They can switch on their hot water heater or do laundry when energy is cheaper, or when their solar system is generating surplus energy and switch off appliances during peak demands.
 
 - **Retailers** can use smart meter data to reduce costs, increase efficiency, improve customer service and also reward households for using less electricity during peak energy periods.
 
@@ -53,10 +53,9 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 ### Arrangement of time : Linear or Cyclic
 
  - Linear granularities like days, weeks, months, years
- - Cyclic granularities like DoW, MoY, hOD 
+ - Circular granularities like DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
  
-
-### Looking at time from the perspective of different circular granularities
+---
 
 Data description:  30 minutes interval smart meter data from Monash Residential Services from April 4, 2018 to May 31, 2018
 
@@ -85,9 +84,17 @@ knitr::include_graphics("/Users/sgup0008/Documents/MRS_Consumption/B429_files/fi
 
 ---
 
-### Different story when we look at time from different angles. So it is important to look at data from different perspectives.
+### 
 
-But can all combinations of these circular granularity be plotted?
+Learning 1 - Aggregating information across different circular granularities can communicate completely different aspects of data
+
+-- 
+
+Learning 2 - Exhaustive sets of visual representation required to get multiple perspectives on data
+
+-- 
+
+Refined Question: Can all combinations of these circular granularities be plotted?
 
 --- 
 
@@ -107,70 +114,50 @@ Define Harmonies and Clashes
 ## Clustering of spatio-temporal data based on probability distributions
 
 
+<!-- ```{r b105_days,echo=FALSE} -->
+
+<!-- Data_Halls_Residence <-read_rds("/Users/sgup0008/Documents/MRS_Consumption/DHResidence.rds") -->
+
+
+<!-- selected_units <- Data_Halls_Residence %>% filter(Source %in% c("B1 05","B2 15","B3 37", "B4 29", "BG 50")) -->
+
+<!-- selected_units$`Timestamp UTC` <- lubridate::ymd_hms(selected_units$`Timestamp UTC`) -->
+
+<!-- selected_units_tsibble <- as_tsibble(selected_units,key=id(Source),index=`Timestamp UTC`,tz="UTC") -->
+
+
+<!-- SU_Date <-selected_units %>% mutate(Date = as.POSIXct(`Timestamp UTC`,  format = "%Y-%m-%d %H:%M")) -->
+
+<!-- date.range = range(selected_units$`Timestamp UTC`) -->
+
+<!-- Reference_time =  seq( -->
+<!--   from=as.POSIXct(date.range[1], tz='UTC',"%Y-%m-%d %H:%M"), -->
+<!--   to=as.POSIXct(date.range[2], tz='UTC',"%Y-%m-%d %H:%M"), -->
+<!--   by='15 min' -->
+<!-- ) -->
+
+
+<!-- SU_Date.uniform <- expand.grid(time=Reference_time, -->
+<!--                           source=unique(SU_Date$Source)) %>% -->
+<!--   left_join(SU_Date, by=c('time'='Date'), 'source') -->
 
 
 
 
-
-
-```{r b105_days,echo=FALSE}
-
-Data_Halls_Residence <-read_rds("/Users/sgup0008/Documents/MRS_Consumption/DHResidence.rds")
-
-
-selected_units <- Data_Halls_Residence %>% filter(Source %in% c("B1 05","B2 15","B3 37", "B4 29", "BG 50"))
-
-selected_units$`Timestamp UTC` <- lubridate::ymd_hms(selected_units$`Timestamp UTC`)
-
-selected_units_tsibble <- as_tsibble(selected_units,key=id(Source),index=`Timestamp UTC`,tz="UTC")
-
-
-SU_Date <-selected_units %>% mutate(Date = as.POSIXct(`Timestamp UTC`,  format = "%Y-%m-%d %H:%M"))
-
-date.range = range(selected_units$`Timestamp UTC`)
-
-Reference_time =  seq(
-  from=as.POSIXct(date.range[1], tz='UTC',"%Y-%m-%d %H:%M"),
-  to=as.POSIXct(date.range[2], tz='UTC',"%Y-%m-%d %H:%M"),
-  by='15 min'
-)
-
-
-SU_Date.uniform <- expand.grid(time=Reference_time,
-                          source=unique(SU_Date$Source)) %>%
-  left_join(SU_Date, by=c('time'='Date'), 'source')
+<!-- vic_holidays <- holiday_aus(2018, state = "VIC") -->
+<!-- SU_uniform_mutate <- SU_Date.uniform %>% mutate(date = date(time),wday = wday(time, label = TRUE, abbr = TRUE, -->
+<!--                       week_start = 1), -->
+<!--                       month = month(time, label = TRUE, abbr = TRUE), -->
+<!--                       year = year(time), -->
+<!--                       hour = hour(time),work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>% -->
+<!--                         mutate(work = ifelse(date %in% vic_holidays$date, 0, work)) -->
 
 
 
+<!--  s1 <- SU_uniform_mutate %>% filter(Source=="B4 29") %>% mutate(work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>% -->
+<!--   mutate(work = ifelse(date %in% vic_holidays$date, 0, work)) -->
 
-vic_holidays <- holiday_aus(2018, state = "VIC")
-SU_uniform_mutate <- SU_Date.uniform %>% mutate(date = date(time),wday = wday(time, label = TRUE, abbr = TRUE,
-                      week_start = 1),
-                      month = month(time, label = TRUE, abbr = TRUE),
-                      year = year(time),
-                      hour = hour(time),work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>%
-                        mutate(work = ifelse(date %in% vic_holidays$date, 0, work))
+<!--  s2 <- ts(s1$Value,frequency = 48) -->
 
-
-
- s1 <- SU_uniform_mutate %>% filter(Source=="B4 29") %>% mutate(work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>%
-  mutate(work = ifelse(date %in% vic_holidays$date, 0, work))
- 
- s2 <- ts(s1$Value,frequency = 48)
- 
- autoplot(s2) + ylab("Total kwh")
-```
-
-
-```{r, out.width="100%",include=TRUE, fig.align="center", echo=FALSE}
-knitr::include_graphics("/Users/sgup0008/Documents/Code_Exploration/LinearRplot.png")
-```
-
-
-
-## Deconstruction of Time - Time Granularities
-
-\small 
-Data and associated time can be modeled and integrated at different levels of abstractions of time called \alert{granularities} (e.g., months, days, hours, and seconds), enabling \alert{display of probability distribution} along granularities
- 
-- Aggregating information across granularities can communicate completely different aspects of data
+<!--  autoplot(s2) + ylab("Total kwh") -->
+<!-- ``` -->
