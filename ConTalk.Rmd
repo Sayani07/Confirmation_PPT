@@ -25,6 +25,25 @@ library(lubridate)
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=8))
 ```
 
+# <span style="color:DarkBlue"> Agenda
+
+- Motivation
+
+- Research Aim
+
+- What is EDA? How it can help?
+
+- Research Objectives
+  - Visualization of probability distributions of deconstructed temporal data
+  - Visualization of probability distributions of deconstructed spatio- temporal data
+  - Clustering of spatio-temporal data based on probability distributions
+  
+- Visualization of probability distributions of deconstructed temporal data
+
+- Timeline
+
+---
+
 # <span style="color:DarkBlue"> Motivation
 
 ## Electricity smart meter technology 
@@ -121,7 +140,7 @@ Developed by **John Tukey** as a way of _*systematically*_ using the tools of st
  - Big problem broken into pieces by focussing on subsets
 <br>
 <br>
- - Visualization at varying resolutions of time and space
+ - Visualization of <span style="color:Crimson"> probability distributions <span style="color:Black"> at varying resolutions of time and space
 <br>
 <br>
  - Find regular patterns/ anomalies or pockets of similar behavior
@@ -137,12 +156,15 @@ Developed by **John Tukey** as a way of _*systematically*_ using the tools of st
 
 # <span style="color:DarkBlue"> Research goals
 
-### Visualization of probability distributions of deconstructed temporal data
-
-### Visualization of probability distributions of deconstructed spatio- temporal data
-
-### Clustering of spatio-temporal data based on probability distributions
-
+### <span style="color:#c33c3c"> Visualization of probability distributions of deconstructed temporal data
+<br>
+<br>
+### <span style="color:#c33c3c"> Visualization of probability distributions of deconstructed spatio- temporal data
+<br>
+<br>
+### <span style="color:#c33c3c"> Clustering of spatio-temporal data based on probability distributions
+<br>
+<br>
 ---
 ### Arrangement of time : Linear or Cyclic
 
