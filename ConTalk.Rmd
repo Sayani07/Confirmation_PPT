@@ -145,7 +145,7 @@ Developed by **John Tukey** as a way of _*systematically*_ using the tools of st
 
 ### <span style="color:DarkBlue"> How can it help?
 
- - Big problem broken into pieces by focussing on subsets
+ - Big problem broken into pieces by focusing on subsets
 <br>
 <br>
  - Visualization of <span style="color:Crimson"> probability distributions <span style="color:Black"> at varying resolutions of time and space
@@ -344,35 +344,27 @@ class: middle left
 class: middle left
 
 ## <span style="color:DarkBlue"> Visualizing distributions across circular granularities (II)
-
-### Data description: 
-Source ~  Buildings and Property Division at Monash University  
-Frequency ~ 30 minutes interval smart meter data of Victoria (aggregate)
-Time frame ~ January, 2002 to March 1, 2015  
   
----
 .pull-left[
 
 Can combinations of these circular granularities be plotted for effective exploration?
 <br>
-<br>
 
 a) Day-of-Year and Day-of-Month
-<br>
 <br>
 
 b) Week-of-Month and Day-of-Month
 <br>
-<br>
 
 c) Week-of-Month and Week-of-Year
 <br>
-<br>
+
 
 d) Month-of-Year and Day-of-Year
 <br>
-<br>
 
+Frequency ~ 30 minutes interval smart meter data of Victoria (aggregate)  
+Time frame ~ January, 2002 to March 1, 2015 
 
 ]
 
@@ -512,7 +504,7 @@ _*These definitions for linear granularities are inadequate for conceptualizing 
 
 **Definition:** A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
 
-#### Illustratives calendar categorisations
+#### Illustrative calendar categorisations
 
 ```{r Modarith, echo=FALSE, out.width="70%"}
 knitr::include_graphics("modarith-table.png")
@@ -521,7 +513,7 @@ _* $n_i$ is the number of categories created by $C_i$ *_
 
 ---
 
-### <span style="color:DarkBlue"> to avoid Clashes
+### <span style="color:DarkBlue"> Rules to control for Clashes
 
 #### Structurally Empty Combinations (Examples: DoM and DoY)
 **Rule 1** 
@@ -638,7 +630,6 @@ Then $T \ge m_1m_2k$, k>30 (approx) for density estimates
 <!-- ``` -->
 <!-- ] -->
 <!-- ] -->
----
 
 ## <span style="color:DarkBlue"> Timeline
 ```{r Timeline, echo=FALSE, eval=TRUE}
