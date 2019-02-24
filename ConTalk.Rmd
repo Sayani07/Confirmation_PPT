@@ -34,11 +34,13 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 - What is EDA? How it can help?
 
 - Research Objectives
-  - Visualization of probability distributions of deconstructed temporal data
-  - Visualization of probability distributions of deconstructed spatio- temporal data
-  - Clustering of spatio-temporal data based on probability distributions
+
+  - Visualizing probability distributions on deconstructed time
   
-- Visualization of probability distributions of deconstructed temporal data
+  - Spatio-temporal granularities and probability distribution plots
+  
+  - Clustering algorithms for grouping probability distributions on spatio-temporal granularities
+  
 
 - Timeline
 
@@ -160,15 +162,17 @@ Developed by **John Tukey** as a way of _*systematically*_ using the tools of st
 
 ---
 
-# <span style="color:DarkBlue"> Research goals
+class: middle left
 
-### <span style="color:#c33c3c"> Visualization of probability distributions of deconstructed temporal data
+# <span style="color:DarkBlue"> Research objectives
+
+1) <span style="color:Black"> Visualization of probability distributions of deconstructed temporal data
 <br>
 <br>
-### <span style="color:#c33c3c"> Visualization of probability distributions of deconstructed spatio- temporal data
+2) <span style="color:Black"> Visualization of probability distributions of deconstructed spatio- temporal data
 <br>
 <br>
-### <span style="color:#c33c3c"> Clustering of spatio-temporal data based on probability distributions
+3) <span style="color:Black"> Clustering of spatio-temporal data based on probability distributions
 <br>
 <br>
 ---
@@ -181,14 +185,19 @@ class: middle center
 ## <span style="color:DarkBlue"> Deconstructing temporal data - Granularities
 
 .pull-left[
-#### Arrangement of time : a) Linear or b) Cyclic
+#### Arrangement of time
 
+a) Linear  
+b) Cyclic
 <br>
-#### <span style="color:#c33c3c"> **Granularities** <span style="color:Black">  Abstractions of time based on Calendar
-
-#### <span style="color:#c33c3c"> **Linear granularities** <span style="color:Black"> : Days, weeks, months, years
-
-#### <span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
+<br>
+<span style="color:#c33c3c"> **Granularities** <span style="color:Black">  Abstractions of time based on Calendar
+<br>
+<br>
+<span style="color:#c33c3c"> **Linear granularities** <span style="color:Black"> : Days, weeks, months, years
+<br>
+<br>
+<span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
 ]
 
 .pull-right[
@@ -197,12 +206,20 @@ class: middle center
 
  
 ---
+class: middle left
 
 ## <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
 
-<!-- Data description:  30 minutes interval smart meter data from Monash Residential Services from April 4, 2018 to May 31, 2018 -->
+### Data description: 
+Source ~  Buildings and Property Division at Monash University  
+Frequency ~ 30 minutes interval smart meter data of Monash Residential Services  
+Time frame ~ April 4, 2018 to May 31, 2018  
+Spread: Two living units "B105" and "B429"  
+---
 
-```{r okaygraph1, out.height=400, out.width = "80%",echo=FALSE}
+# <span style="color:DarkBlue"> Across DoW
+
+```{r okaygraph1, fig.height=6, fig.width=4,echo=FALSE}
 load("Units_Data.Rdata")
 
 Units_Data$`Timestamp UTC` <-lubridate::ymd_hms(Units_Data$`Timestamp UTC`)
@@ -223,44 +240,63 @@ p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot()   
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ggtitle("B1 05")
    
 p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   group_by(date) %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot()
-
-grid.arrange(p1, p2,  ncol = 2)
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ggtitle("B4 29")
 
 ```
+.pull-left[
+```{r, echo=FALSE}
+ p1
+```
+]
+.pull.right[
+```{r, echo=FALSE}
+p2
+```
+]
 ---
-## Across hours, by day of the week
+##<span style="color:DarkBlue">   Across HoD and DoW
 
-```{r okaygraph2, out.height=400, out.width = "80%",echo=FALSE}
+```{r okaygraph2, fig.height=6, fig.width=4,echo=FALSE}
 p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   group_by(wday,hour) %>%
   ggplot(aes(x=as.factor(hour), y=Value,group=hour)) + geom_boxplot() +
   facet_wrap(~wday) + 
   ylab("Total kwh") +
-  xlab("Hours")
+  xlab("Hours")+ ggtitle("B1 05")
 
 p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   group_by(wday,hour) %>%
   ggplot(aes(x=as.factor(hour), y=Value, group=hour)) + geom_boxplot() +
   facet_wrap(~wday) + 
   ylab("Total kwh") +
-  xlab("Hours") + scale_x_discrete(breaks = seq(1,24,2))  
+  xlab("Hours") + scale_x_discrete(breaks = seq(1,24,2))+ ggtitle("B4 29")
 
-grid.arrange(p3, p4,  ncol = 2)
+
 
 ```
+.pull-left[
+```{r, echo=FALSE}
+ p3
+```
+]
+.pull.right[
+```{r, echo=FALSE}
+p4
+```
+]
+
 ---
 
-## Across hours, by work days and non-work days
+## <span style="color:DarkBlue">  Across HoD and WD/NWD
 
-```{r okaygraph, out.height=400, out.width = "80%",echo=FALSE}
+```{r okaygraph, fig.height=6, fig.width=4,echo=FALSE}
  s1 <- SU_uniform_mutate %>%
   mutate(work = ifelse(date %in% vic_holidays$date, 0, work))
 
@@ -272,8 +308,8 @@ b1_Quantile <- s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>%
                              Value = quantile(x, probs = .x,na.rm=TRUE)))
    })
  
-p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 1)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")  
-  
+p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")+ theme(legend.position = "none",strip.text = element_text(size = 10, margin = margin())) + ggtitle("B1 05")
+
 b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>% 
    do({x <- .$Value
    map_dfr(.x = seq(0.1,0.9,0.1),
@@ -281,12 +317,20 @@ b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>%
                              Value = quantile(x, probs = .x,na.rm=TRUE)))
    })
  
-p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 1)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")  
+p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")+ theme(legend.position = "none",strip.text = element_text(size = 10, margin = margin())) + ggtitle("B4 29")
 
-grid.arrange(p5, p6,  ncol = 2)
-
-
+# grid.arrange(p5, p6,  ncol = 2)
 ```
+.pull-left[
+```{r, echo=FALSE}
+ p5
+```
+]
+.pull.right[
+```{r, echo=FALSE}
+p6
+```
+]
 ---
 
 class: middle left
@@ -423,7 +467,7 @@ Examples:
 
 --
 
-## <span style="color:DarkBlue">  Why Harmonies work and Clashes don't?
+#### <span style="color:DarkBlue">  Why Harmonies work and Clashes don't?
 
 - Nature of time granularities and the way they map to calendars
 
@@ -481,7 +525,7 @@ Examples: Working/Non-working day and HoD
 #### Structurally Empty Combinations
 **Rule 1** 
 
-For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$, choosing $m_1, m_2$>1 such that HCF($m_2$, $m_1$) >  1 will lead to structurally empty combinations provided $s > m_1m_2$. HCF refers to the largest common factor. 
+For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$, choosing $m_1, m_2$>1 such that $HCF(m_2, m_1) >$  1 will lead to structurally empty combinations provided $s > m_1m_2$. HCF refers to the largest common factor. 
 
 **Rule 2**
 
