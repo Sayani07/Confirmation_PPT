@@ -59,63 +59,96 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 
 ---
 
+## Data description
 
-- Source: Data61, CSIRO
-
-- Half hourly interval meter reading (Kwh) of electricity consumption
-
-- Resulted in 35 billion half hourly observations per year across all participating households.
-
-- Trials based in Newcastle, New South Wales, and parts of Sydney CBD, Newington, Ku-Ring-Gai, and the rural township of Scone.
-
----
 .pull-left[
 
 Source
---
-
-Description
---
-
+<br>
+<br>
+Frequency
+<br>
+<br>
 Time Frame
---
-
+<br>
+<br>
 Spread
-
+<br>
+<br>
+<br>
+Type
 ]
 
 .pull-right[
 
 Data61, CSIRO
---
-
-
-Half hourly interval meter reading (Kwh) of electricity consumption
---
-
-Resulted in 35 billion half hourly observations per year across all participating households.
---
-
-Trials based in Newcastle, New South Wales, and parts of Sydney CBD, Newington, Ku-Ring-Gai, and the rural township of Scone.
-
+<br>
+<br>
+Half hourly interval meter reading (Kwh)
+<br>
+<br>
+2012 to 2014
+<br>
+<br>
+14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
+<br>
+<br>
+Spatio-Temporal Data
 ]
+
+###Volume : Approx. 40 billion half hourly observations  
+
 ---
+### Data description (~ 40 billion half hourly observations)
+
+.pull-left[
+#### Source
+]
+.pull-right[Data61, CSIRO
+]
+--
+.pull-left[
+#### Frequency
+]
+.pull-right[Half hourly interval meter reading (Kwh)
+]
+--
+.pull-left[
+#### Time Frame
+]
+.pull-right[2012 to 2014
+]
+--
+.pull-left[
+#### Spread
+]
+.pull-right[14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
+]
+
 
 ---
 
 <!-- Challenge for visualisation is handling the volume of data supplied by smart meters and derive insights for efficient usage. -->
 ---
-# What is EDA? How can it help?
+# What is Exploratory Data Analysis? How can it help?
 
 
-```{r, out.width="0.3\\linewidth",out.width="100%",include=TRUE, fig.align="center", echo=FALSE}
+```{r, out.width="0.3\\linewidth",include=TRUE, fig.align="center", echo=FALSE}
 knitr::include_graphics("EDA.png")
 ```
 ---
 
 # Research goals
 
-## Visualization of probability distributions of deconstructed temporal data
+## Research Aim 1
+Visualization of probability distributions of deconstructed temporal data
+
+## Research Aim 2
+Visualization of probability distributions of deconstructed spatio- temporal data
+
+## Research Aim 3
+Clustering of spatio-temporal data based on probability distributions
+
 
 
 ### Arrangement of time : Linear or Cyclic
@@ -288,12 +321,8 @@ Define Harmonies and Clashes
 
 ##Structurally Empty Combinations
 
-
 ##Non-functional Empty Combinations
 
-## Visualization of probability distributions of deconstructed spatio- temporal data
-
-## Clustering of spatio-temporal data based on probability distributions
 
 
 ## Timeline
