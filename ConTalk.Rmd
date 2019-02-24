@@ -82,19 +82,19 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 
 .pull-left[
 
-Source
+.large[Source]
 <br>
 <br>
 <br>
-Frequency
+.large[Frequency]
 <br>
 <br>
 <br>
-Time Frame
+.large[Time Frame]
 <br>
 <br>
 <br>
-Spread
+.large[Spread]
 <br>
 <br>
 <br>
@@ -121,7 +121,9 @@ Half hourly interval meter reading (Kwh)
 Spatio - Temporal Data
 ]
 ---
+## <span style="color:DarkBlue">  Research Aim
 
+---
 ## <span style="color:DarkBlue">  What is Exploratory Data Analysis?
 
 .pull-left[
@@ -166,50 +168,119 @@ Developed by **John Tukey** as a way of _*systematically*_ using the tools of st
 <br>
 <br>
 ---
-### Arrangement of time : Linear or Cyclic
+class: middle center
 
- - Linear granularities like days, weeks, months, years
- - Circular granularities like DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
+# <span style="color:DarkBlue"> Visualization of probability distributions of deconstructed temporal data
+
+---
+
+## <span style="color:DarkBlue"> Deconstructing temporal data - Granularities
+
+.pull-left[
+#### Arrangement of time : a) Linear or b) Cyclic
+]
+
+.pull-right[
+.center[<img src="Linear-Circular.png" height=280px>]
+]
+
+#### <span style="color:#c33c3c"> **Granularities** <span style="color:Black">  Abstractions of time based on Calendar
+
+#### <span style="color:#c33c3c"> **Linear granularities** <span style="color:Black"> : Days, weeks, months, years
+
+#### <span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
  
 ---
 
-Data description:  30 minutes interval smart meter data from Monash Residential Services from April 4, 2018 to May 31, 2018
+## <span style="color:DarkBlue"> Visualizing distributions across circular granularities
+
+<!-- Data description:  30 minutes interval smart meter data from Monash Residential Services from April 4, 2018 to May 31, 2018 -->
 
 ##Across days
 
-<!-- # ```{r, out.width="0.3\\linewidth",out.width="100%",include=TRUE, fig.align="center", echo=FALSE} -->
-<!-- #  -->
-<!-- # # Data_Halls_Residence <-readr::read_rds("DHResidence.rds") -->
-<!-- # #  -->
-<!-- # #  -->
-<!-- # # selected_units <- Data_Halls_Residence %>% filter(Source %in% c("B1 05","B2 15","B3 37", "B4 29", "BG 50")) -->
-<!-- # #  -->
-<!-- # # selected_units$`Timestamp UTC` <-lubridate::ymd_hms(selected_units$`Timestamp UTC`) -->
-<!-- # #  -->
-<!-- # # selected_units_tsibble <- as_tsibble(selected_units,key=id(Source),index=`Timestamp UTC`,tz="UTC") -->
-<!-- # #  -->
-<!-- # #  -->
-<!-- # # vic_holidays <- holiday_aus(2018, state = "VIC") -->
-<!-- #  -->
-<!-- # # SU_uniform_mutate <-selected_units_tsibble  %>% mutate(date = date(`Timestamp UTC`),wday = wday(date, label = TRUE, abbr = TRUE, -->
-<!-- # #                       week_start = 1), -->
-<!-- # #                       month = month(date, label = TRUE, abbr = TRUE), -->
-<!-- # #                       year = year(date), -->
-<!-- # #                       hour = hour(date),work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>% -->
-<!-- # #                         mutate(work = ifelse(date %in% vic_holidays$date, 0, work)) -->
-<!-- #  -->
-<!-- #  -->
-<!-- #  -->
-<!-- # # SU_uniform_mutate %>% filter(Source=="B4 29") %>% -->
-<!-- # #   group_by(date) %>% -->
-<!-- # #   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%  -->
-<!-- # #   ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + -->
-<!-- # #   ylab("Total daily kwh") + -->
-<!-- # #   xlab("") -->
-<!-- #  -->
-<!-- #  -->
-<!-- # # knitr::include_graphics("/Users/sgup0008/Documents/MRS_Consumption/B429_files/figure-html/b105_days-1.png") -->
-<!-- # ``` -->
+```{r okaygraph1, echo=FALSE}
+load("Units_Data.Rdata")
+
+
+Units_Data$`Timestamp UTC` <-lubridate::ymd_hms(Units_Data$`Timestamp UTC`)
+
+
+vic_holidays <- holiday_aus(2018, state = "VIC")
+
+SU_uniform_mutate <-Units_Data  %>% mutate(date = date(`Timestamp UTC`),wday = wday(date, label = TRUE, abbr = TRUE,
+                       week_start = 1),
+                       month = month(date, label = TRUE, abbr = TRUE),
+                       year = year(date),
+                       hour = hour(`Timestamp UTC`),
+                       work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0), work = ifelse(date %in% vic_holidays$date, 0, 1))
+                       
+                       
+p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
+  group_by(date) %>%
+  summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
+  mutate(wday = wday(date, label = TRUE, abbr = TRUE,
+                     week_start = 1)) %>%
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot()   
+   
+p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
+  group_by(date) %>%
+  summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
+  mutate(wday = wday(date, label = TRUE, abbr = TRUE,
+                     week_start = 1)) %>%
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot()
+
+grid.arrange(p1, p2,  ncol = 2)
+```
+---
+
+```{r okaygraph2, echo=FALSE}
+p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
+  group_by(wday,hour) %>%
+  ggplot(aes(x=as.factor(hour), y=Value,group=hour)) + geom_boxplot() +
+  facet_wrap(~wday) + 
+  ylab("Total kwh") +
+  xlab("Hours")
+
+p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
+  group_by(wday,hour) %>%
+  ggplot(aes(x=as.factor(hour), y=Value, group=hour)) + geom_boxplot() +
+  facet_wrap(~wday) + 
+  ylab("Total kwh") +
+  xlab("Hours") + scale_x_discrete(breaks = seq(1,24,2))  
+
+grid.arrange(p1, p2,  nrow = 2)
+
+```
+---
+
+```{r okaygraph, echo=FALSE}
+ s1 <- SU_uniform_mutate %>%
+  mutate(work = ifelse(date %in% vic_holidays$date, 0, work))
+
+ 
+b1_Quantile <- s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>% 
+   do({x <- .$Value
+   map_dfr(.x = seq(0.1,0.9,0.1),
+           .f = ~ tibble(Quantile = .x,
+                             Value = quantile(x, probs = .x,na.rm=TRUE)))
+   })
+ 
+p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 1)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")  
+  
+b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>% 
+   do({x <- .$Value
+   map_dfr(.x = seq(0.1,0.9,0.1),
+           .f = ~ tibble(Quantile = .x,
+                             Value = quantile(x, probs = .x,na.rm=TRUE)))
+   })
+ 
+p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 1)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")  
+
+grid.arrange(p5, p6,  nrow = 2)
+
+
+```
+
 
 
 ## Across hours, by day of the week
