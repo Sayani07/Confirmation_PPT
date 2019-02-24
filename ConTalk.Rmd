@@ -168,15 +168,17 @@ class: middle left
 
 # <span style="color:DarkBlue"> Research objectives
 
-1) <span style="color:Black"> Visualization of probability distributions of deconstructed temporal data
+### <span style="color:Black"> Visualization of probability distributions of deconstructed temporal data
 <br>
 <br>
-2) <span style="color:Black"> Visualization of probability distributions of deconstructed spatio- temporal data
+### <span style="color:Black"> Spatio-temporal granularities and probability distribution plots
 <br>
 <br>
-3) <span style="color:Black"> Clustering of spatio-temporal data based on probability distributions
+### <span style="color:Black"> Clustering algorithms for grouping probability distributions on spatio-temporal granularities
 <br>
 <br>
+  
+
 ---
 class: middle center
 
