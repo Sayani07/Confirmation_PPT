@@ -643,4 +643,45 @@ Product = c("Milestone","Complete Paper", "R Package", "R Package", "Internship"
 out <- cbind(Date, Description, Product)
 out1 <- as_tibble(out)
 knitr::kable(out) 
-# kable_styling(out1, font_size=20 ,position = "left",latex_options = "scale_down")
+```
+
+---
+
+# <span style="color:DarkBlue"> Acknowledgements
+
+.pull-left[
+### Supervisors
+<br>
+<br>
+Professor Rob J Hyndman  
+<br>
+<br>
+Professor Dianne Cook  
+<br>
+<br>
+Dr Peter Toscas
+<br>
+<br>
+<br>
+<br>
+
+### Data61, CSIRO 
+
+
+]
+
+.pull-right[
+### NUMBATS
+<br>
+<br>
+```{r numbats, echo=FALSE, out.width="100%"}
+  knitr::include_graphics("Numbats.png")
+```
+]
+
+---
+
+class: middle center
+
+## <span style="color:DarkBlue"> Questions?
+  
