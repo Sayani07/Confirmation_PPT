@@ -129,7 +129,7 @@ class: middle left
 
 ## <span style="color:DarkBlue">  Research Aim
 
-### Provide a platform to <span style="color:Crimson"> systematically <span style="color:Black"> explore multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> and support the <span style="color:Crimson"> exploratory analysis<span style="color:Black">  to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> probability distributions <span style="color:Black"> in an <span style="color:Crimson"> open source environment
+### Provide a platform to <span style="color:Crimson"> systematically <span style="color:Black"> explore multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> probability distributions <span style="color:Black"> in an <span style="color:Crimson"> open source environment
 
 ---
 ## <span style="color:DarkBlue">  What is Exploratory Data Analysis?
