@@ -398,13 +398,6 @@ grid.arrange(p1, p2, p3, p4, ncol = 2)
 ]
 ---
 
-# criteria for plots that work vs plots that don't
-
-##Structurally Empty Combinations:
-
-##Non-functional Empty Combinations: 
-
----
 
 ## <span style="color:DarkBlue"> Harmonies and Clashes
 
@@ -460,7 +453,21 @@ _*These definitions for linear granularities are inadequate for conceptualizing 
 **Definition:** A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
 
 ---
+Illustratives:
+
+
+
+
+# criteria for plots that work vs plots that don't
+
+##Structurally Empty Combinations:
+
+##Non-functional Empty Combinations: 
+
+---
+
 # Rules
+
 
 
 
