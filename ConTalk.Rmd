@@ -481,7 +481,7 @@ Examples:
 
 #  <span style="color:DarkBlue"> Formalizing the theory to study properties of granularities
 ---
-## Linear Time Granularities 
+## <span style="color:DarkBlue"> Linear Time Granularities 
 
 _* By Bettini et al. "A Glossary of Time Granularity Concepts"*_
 
@@ -500,7 +500,7 @@ _*These definitions for linear granularities are inadequate for conceptualizing 
 
 ---
 
-## Circular Time Granularities
+## <span style="color:DarkBlue"> Circular Time Granularities
 
 **Definition:** A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
 
@@ -513,20 +513,9 @@ _* $n_i$ is the number of categories created by $C_i$ *_
 
 ---
 
-## Criteria for plots that work vs plots that don't
+### <span style="color:DarkBlue"> to avoid Clashes
 
-#### Structurally Empty Combinations
-
-Examples: DoM and DoY
-
-#### Non-functional Empty Combinations 
-
-Examples: Working/Non-working day and HoD
-
-
-## Rules to assess Clashes
-
-#### Structurally Empty Combinations
+#### Structurally Empty Combinations (Examples: DoM and DoY)
 **Rule 1** 
 
 For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$, choosing $m_1, m_2$>1 such that $HCF(m_2, m_1) >$  1 will lead to structurally empty combinations provided $s > m_1m_2$. HCF refers to the largest common factor. 
@@ -538,7 +527,7 @@ For two circular granularities $C_3 = (\lfloor s/a\rfloor   \mod m_1)$ and $C_4 
 Choosing $a, b, m_1>1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the other one will yield empty combinations provided  $am_1 \neq b$ or $bm_2 \neq a$.
 
 
-#### Non-functional Empty Combinations
+#### Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
 
 - T observations for a linear bottom granularity
 - C1 and C2 are two circular granularities with modular period $m_1$ and $m_2$ 
@@ -584,66 +573,66 @@ Then $T \ge m_1m_2k$, k>30 (approx) for density estimates
 <!-- knitr::kable(cbind(s, C1, C2), format = "html") -->
 <!-- ``` -->
 
-]
+<!-- ] -->
 
-.pull-left[
-```{r, echo=FALSE}
-v11 <- knitr::kable(rule_1(1:8,m1 = 2, m2 = 4), format='html')
-v11
-```
-]
-]
+<!-- .pull-left[ -->
+<!-- ```{r, echo=FALSE} -->
+<!-- v11 <- knitr::kable(rule_1(1:8,m1 = 2, m2 = 4), format='html') -->
+<!-- v11 -->
+<!-- ``` -->
+<!-- ] -->
+<!-- ] -->
 
 
 
 ```{r checkrule2, echo=FALSE, out.width="50%"}
 
-rule_2 <-  function(p,a,b,m1,m2)
-  
-{
-  L1 <-  ceiling((p/a)) %% m1
-  L2 <-  ceiling((p/b)) %% m2
-  data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1)) 
-  # data_s %>% ggplot(aes(x = as.factor(c1), y=c2)) + geom_point(alpha=0.005)
-  #All posiible combination that are possible
-  Allcomb <- tidyr::expand(data_s, L1, L2)
-  #All possible combination that can exist
-  combexist <- tidyr::expand(data_s, nesting(L1, L2))
-  #All possible combination that can exist
-  cmbmiss <- Allcomb %>% anti_join(combexist) 
-  #Print missing combinations
-  #print(cmbmiss)
-}
+# rule_2 <-  function(p,a,b,m1,m2)
+#   
+# {
+#   L1 <-  ceiling((p/a)) %% m1
+#   L2 <-  ceiling((p/b)) %% m2
+#   data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1)) 
+#   # data_s %>% ggplot(aes(x = as.factor(c1), y=c2)) + geom_point(alpha=0.005)
+#   #All posiible combination that are possible
+#   Allcomb <- tidyr::expand(data_s, L1, L2)
+#   #All possible combination that can exist
+#   combexist <- tidyr::expand(data_s, nesting(L1, L2))
+#   #All possible combination that can exist
+#   cmbmiss <- Allcomb %>% anti_join(combexist) 
+#   #Print missing combinations
+#   #print(cmbmiss)
+# }
 
 ```
 
-.right-column[
-.pull-left[
-```{r dataeg2, echo=FALSE, eval=TRUE, results='asis'}
-s <- c(1:20) 
-C5 <-   ceiling((s/3)) %% 2
-C6 <-   ceiling((s/6)) %% 3
-C7 <-   ceiling((s/3)) %% 5
-C8 <-   ceiling((s/5)) %% 3
-C9 <-   ceiling((s/2)) %% 3
-C10 <-   ceiling((s/6)) %% 4
+<!-- .right-column[ -->
+<!-- .pull-left[ -->
+<!-- ```{r dataeg2, echo=FALSE, eval=TRUE, results='asis'} -->
+<!-- s <- c(1:20)  -->
+<!-- C5 <-   ceiling((s/3)) %% 2 -->
+<!-- C6 <-   ceiling((s/6)) %% 3 -->
+<!-- C7 <-   ceiling((s/3)) %% 5 -->
+<!-- C8 <-   ceiling((s/5)) %% 3 -->
+<!-- C9 <-   ceiling((s/2)) %% 3 -->
+<!-- C10 <-   ceiling((s/6)) %% 4 -->
 
 
-knitr::kable(cbind(s, C9, C10), format = "html") %>% kableExtra::kable_styling(font_size=10)
-knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")%>% kableExtra::kable_styling(font_size=10)
-```
-]
+<!-- knitr::kable(cbind(s, C9, C10), format = "html") %>% kableExtra::kable_styling(font_size=10) -->
+<!-- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")%>% kableExtra::kable_styling(font_size=10) -->
+<!-- ``` -->
+<!-- ] -->
 
-.pull-right[
-```{r, echo=FALSE}
-v12 <- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")
-v12
-```
-]
-]
+<!-- .pull-right[ -->
+<!-- ```{r, echo=FALSE} -->
+<!-- v12 <- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html") -->
+<!-- v12 -->
+<!-- ``` -->
+<!-- ] -->
+<!-- ] -->
 ---
 
-## Timeline
+## <span style="color:DarkBlue"> Timeline
 ```{r Timeline, echo=FALSE, eval=TRUE}
  library(kableExtra) 
  library(tidyverse)
