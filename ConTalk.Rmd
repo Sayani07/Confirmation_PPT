@@ -123,6 +123,9 @@ Spatio - Temporal Data
 ---
 ## <span style="color:DarkBlue">  Research Aim
 
+class: middle left
+Provide a platform to systematically explore multiple perspectives of spatio-temporal data and support the exploratory analysis to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through probability distributions
+
 ---
 ## <span style="color:DarkBlue">  What is Exploratory Data Analysis?
 
@@ -439,7 +442,7 @@ _* By Bettini et al. "A Glossary of Time Granularity Concepts"*_
 
 **Definition:** A **time domain** is a pair $(T; \le)$ where $T$ is a non-empty set of time instants and $\le$ is a total order on $T$.
 
-**Definition:** A linear **granularity** is a mapping $G$ from the integers (the index set) to subsets of the time domain such that:
+**Definition:** A linear **granularity** is a mapping $G$ from the integers to subsets of the time domain such that:
 
   (C1) if $i < j$ and $G(i)$ and $G(j)$ are non-empty, then each element of $G(i)$ is less than all elements of $G(j)$, and  
   (C2) if $i < k < j$ and $G(i)$ and $G(j)$ are non-empty, then $G(k)$ is non-empty.  
@@ -453,28 +456,144 @@ _*These definitions for linear granularities are inadequate for conceptualizing 
 **Definition:** A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
 
 ---
-Illustratives:
+## Illustratives calendar categorisations
 
+```{r Modarith, echo=FALSE, out.width="50%"}
+knitr::include_graphics("modarith-table.png")
+```
+_* $n_i$ is the number of categories created by $C_i$ *_
 
+## criteria for plots that work vs plots that don't
 
+- Structurally Empty Combinations
 
-# criteria for plots that work vs plots that don't
+Examples: DoM and DoY
 
-##Structurally Empty Combinations:
+- Non-functional Empty Combinations 
 
-##Non-functional Empty Combinations: 
+Examples: Working/Non-working day and HoD
 
 ---
 
-# Rules
+# Rules to assess Clashes
+
+#### Structurally Empty Combinations
+**Rule 1** 
+
+For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$, choosing $m_1, m_2$>1 such that HCF($m_2$, $m_1$) >  1 will lead to structurally empty combinations provided $s > m_1m_2$. HCF refers to the largest common factor. 
+
+**Rule 2**
+
+For two circular granularities $C_3 = (\lfloor s/a\rfloor   \mod m_1)$ and $C_4 = (\lfloor s/b\rfloor \mod m_2)$ and $s > m_1m_2$,
+
+Choosing $a, b, m_1>1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the other one will yield empty combinations provided  $am_1 \neq b$ or $bm_2 \neq a$.
 
 
+#### Non-functional Empty Combinations
 
+- T observations for a linear bottom granularity
+- C1 and C2 are two circular granularities with modular period $m_1$ and $m_2$ 
 
+Then $T \ge m_1m_2k$, k>30 (approx) for density estimates
+---
 
 # Illustration of Rules
 
+
+```{r chck1, echo=FALSE, out.width="50%",comment=FALSE}
+# For validating rule 1, put any value of p,  
+# m1 and m2 to check if there is any expected missing combination
+rule_1 <- function(p, m1, m2)
+{
+  L1 <-  ceiling(p) %% m1  
+  L2 <-  ceiling(p) %% m2
+  data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1))  
+  # data_s %>% ggplot(aes(x = as.factor(c1), y=c2))+ 
+  # geom_point(alpha=0.005)
+ #All possible combinations that are possible
+ Allcomb <- tidyr::expand(data_s, L1, L2)
+ #All possible combinations that  exist
+ combexist <- tidyr::expand(data_s, nesting(L1, L2))
+ #All possible combination that are missing
+ cmbmiss <- Allcomb %>% anti_join(combexist) 
+ #Print missing combinations
+}
+```
+.left-column[
+
+.pull-left[
+```{r rule1, echo=FALSE, eval=TRUE, results='asis',fig.cap=" (Top) of two circular granularities with different modular periods, (Bottom) Missing combinations for each case"}
+s <- 1:8 
+C1 <- s %% 2
+C2 <- s %% 4
+
+C3 <- s %%2
+C4 <- s %%3
+
+library(knitr)
+library(xtable)
+knitr::kable(cbind(s, C1, C2), format = "html")
+```
+
+]
+
+.pull-left[
+```{r, echo=FALSE}
+v11 <- knitr::kable(rule_1(1:8,m1 = 2, m2 = 4), format='html')
+v11
+```
+]
+]
+
+
+
+```{r checkrule2, echo=FALSE, out.width="50%"}
+
+rule_2 <-  function(p,a,b,m1,m2)
+  
+{
+  L1 <-  ceiling((p/a)) %% m1
+  L2 <-  ceiling((p/b)) %% m2
+  data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1)) 
+  # data_s %>% ggplot(aes(x = as.factor(c1), y=c2)) + geom_point(alpha=0.005)
+  #All posiible combination that are possible
+  Allcomb <- tidyr::expand(data_s, L1, L2)
+  #All possible combination that can exist
+  combexist <- tidyr::expand(data_s, nesting(L1, L2))
+  #All possible combination that can exist
+  cmbmiss <- Allcomb %>% anti_join(combexist) 
+  #Print missing combinations
+  #print(cmbmiss)
+}
+
+```
+
+.right-column[
+.pull-left[
+```{r dataeg2, echo=FALSE, eval=TRUE, results='asis'}
+s <- c(1:20) 
+C5 <-   ceiling((s/3)) %% 2
+C6 <-   ceiling((s/6)) %% 3
+C7 <-   ceiling((s/3)) %% 5
+C8 <-   ceiling((s/5)) %% 3
+C9 <-   ceiling((s/2)) %% 3
+C10 <-   ceiling((s/6)) %% 4
+
+
+knitr::kable(cbind(s, C9, C10), format = "html")
+knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")
+```
+]
+
+.pull-right[
+```{r, echo=FALSE}
+v12 <- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")
+v12
+```
+]
+]
 ---
+
 ## Timeline
 ```{r Timeline, echo=FALSE, eval=TRUE}
  library(kableExtra) 
