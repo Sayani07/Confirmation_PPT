@@ -491,30 +491,35 @@ _* By Bettini et al. "A Glossary of Time Granularity Concepts"*_
 
   (C1) if $i < j$ and $G(i)$ and $G(j)$ are non-empty, then each element of $G(i)$ is less than all elements of $G(j)$, and  
   (C2) if $i < k < j$ and $G(i)$ and $G(j)$ are non-empty, then $G(k)$ is non-empty.  
-  
+<br>
+<br>
 The first condition implies that the granules in a linear granularity are non-overlapping and their index order is same as time order
-
+<br>
+<br>
 _*These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicities in time*_
+
+---
 
 ## Circular Time Granularities
 
 **Definition:** A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
 
----
-## Illustratives calendar categorisations
+#### Illustratives calendar categorisations
 
-```{r Modarith, echo=FALSE, out.width="50%"}
+```{r Modarith, echo=FALSE, out.width="70%"}
 knitr::include_graphics("modarith-table.png")
 ```
 _* $n_i$ is the number of categories created by $C_i$ *_
 
-## criteria for plots that work vs plots that don't
+---
 
-- Structurally Empty Combinations
+## Criteria for plots that work vs plots that don't
+
+#### Structurally Empty Combinations
 
 Examples: DoM and DoY
 
-- Non-functional Empty Combinations 
+#### Non-functional Empty Combinations 
 
 Examples: Working/Non-working day and HoD
 
@@ -625,8 +630,8 @@ C9 <-   ceiling((s/2)) %% 3
 C10 <-   ceiling((s/6)) %% 4
 
 
-knitr::kable(cbind(s, C9, C10), format = "html")
-knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")
+knitr::kable(cbind(s, C9, C10), format = "html") %>% kableExtra::kable_styling(font_size=10)
+knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")%>% kableExtra::kable_styling(font_size=10)
 ```
 ]
 
