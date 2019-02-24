@@ -178,17 +178,19 @@ class: middle center
 
 .pull-left[
 #### Arrangement of time : a) Linear or b) Cyclic
+
+<br>
+#### <span style="color:#c33c3c"> **Granularities** <span style="color:Black">  Abstractions of time based on Calendar
+
+#### <span style="color:#c33c3c"> **Linear granularities** <span style="color:Black"> : Days, weeks, months, years
+
+#### <span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
 ]
 
 .pull-right[
 .center[<img src="Linear-Circular.png" height=280px>]
 ]
 
-#### <span style="color:#c33c3c"> **Granularities** <span style="color:Black">  Abstractions of time based on Calendar
-
-#### <span style="color:#c33c3c"> **Linear granularities** <span style="color:Black"> : Days, weeks, months, years
-
-#### <span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
  
 ---
 
@@ -295,7 +297,9 @@ class: middle left
 
 .pull-left[
 
-Can combinations of these circular granularities be plotted?
+Can combinations of these circular granularities be plotted for effective exploration?
+<br>
+<br>
 
 a) Day-of-Year and Day-of-Month
 <br>
@@ -399,13 +403,32 @@ grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 **Harmonies** Combinations of circular granularities which facilitate EDA when plotted together
 
+Examples: 
+
+- DoW and HoD
+- HoD and Working Day/ Non-Working Day
+- DoW and MoY
+
 **Clashes** Combinations of circular granularities which are conflicts in bringing out the best of EDA when plotted together
+
+Examples: 
+
+- DoY and DoM
+- MoY and DoY
+- WoM and DoM
 
 --
 
-<span style="color:#c33c3c"> To formalize the theory to show why some displays work while are others unacceptable for most plausible purposes for effective display of quantitative phenomena.
+## <span style="color:DarkBlue">  Why Harmonies work and Clashes don't?
+
+- Nature of time granularities and the way they map to calendars
 
 ---
+
+class middle center
+
+# <span style="color:#c33c3c"> To formalize the theory to show why some displays work while are others unacceptable for most effective display of quantitative phenomenon.
+
 
 ##Structurally Empty Combinations
 
