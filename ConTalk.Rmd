@@ -192,15 +192,12 @@ class: middle center
  
 ---
 
-## <span style="color:DarkBlue"> Visualizing distributions across circular granularities
+## <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
 
 <!-- Data description:  30 minutes interval smart meter data from Monash Residential Services from April 4, 2018 to May 31, 2018 -->
 
-##Across days
-
-```{r okaygraph1, echo=FALSE}
+```{r okaygraph1, out.width="50%",echo=FALSE}
 load("Units_Data.Rdata")
-
 
 Units_Data$`Timestamp UTC` <-lubridate::ymd_hms(Units_Data$`Timestamp UTC`)
 
@@ -229,11 +226,13 @@ p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
                      week_start = 1)) %>%
   ggplot(aes(x=wday, y=dkwh)) + geom_boxplot()
 
-grid.arrange(p1, p2,  ncol = 2)
+grid.arrange(p1, p2,  nrow = 2)
+
 ```
 ---
+## Across hours, by day of the week
 
-```{r okaygraph2, echo=FALSE}
+```{r okaygraph2, out.width="50%",echo=FALSE}
 p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   group_by(wday,hour) %>%
   ggplot(aes(x=as.factor(hour), y=Value,group=hour)) + geom_boxplot() +
@@ -248,12 +247,14 @@ p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   ylab("Total kwh") +
   xlab("Hours") + scale_x_discrete(breaks = seq(1,24,2))  
 
-grid.arrange(p1, p2,  nrow = 2)
+grid.arrange(p3, p4,  nrow = 2)
 
 ```
 ---
 
-```{r okaygraph, echo=FALSE}
+## Across hours, by work days and non-work days
+
+```{r okaygraph, out.width="50%",echo=FALSE}
  s1 <- SU_uniform_mutate %>%
   mutate(work = ifelse(date %in% vic_holidays$date, 0, work))
 
@@ -280,45 +281,24 @@ grid.arrange(p5, p6,  nrow = 2)
 
 
 ```
-
-
-
-## Across hours, by day of the week
-
-```{r, out.width="0.3\\linewidth", fig.width = 7,out.width="100%",include=TRUE, fig.align="center", echo=FALSE}
-knitr::include_graphics("/Users/sgup0008/Documents/MRS_Consumption/B429_files/figure-html/b105_days_hours-1.png")
-```
-
 ---
 
-## Across hours, by work days and non-work days
 
-```{r, out.width="0.3\\linewidth", fig.width = 7,out.width="100%",include=TRUE, fig.align="center", echo=FALSE}
-knitr::include_graphics("/Users/sgup0008/Documents/MRS_Consumption/B429_files/figure-html/b105_Hours-2.png")
-```
+## <span style="color:DarkBlue"> Visualizing distributions across circular granularities (II)
 
----
-
-### 
-
-Learning 1 - Aggregating information across different circular granularities can communicate completely different aspects of data
+## Learning 1 - Aggregating information across different circular granularities can communicate completely different aspects of data
 
 -- 
 
-Learning 2 - Exhaustive sets of visual representation required to get multiple perspectives on data
+## Learning 2 - Exhaustive sets of visual representation required to get multiple perspectives on data
 
 -- 
 
-Refined Question: Can all combinations of these circular granularities be plotted?
+## Question: Can all combinations of these circular granularities be plotted?
 
 --- 
 
-Data description: 15 minutes interval state level smart meter data of Victoria from January, 2002 to December, 2014
-
-Across half-hours of the day, by year
-
-Give examples where it is not possible
-
+<!-- Data description: 15 minutes interval state level smart meter data of Victoria from January, 2002 to December, 2014 -->
 
 
 ```{r moy-dom,echo=FALSE, out.width = "70%", fig.align = 'center',fig.cap ="Letter-value plot of electricity consumption in Victoria across days of the month\n faceted by months January, February, April and December. "}
@@ -397,11 +377,16 @@ grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
 ---
 
-Define Harmonies and Clashes
+
+## <span style="color:DarkBlue"> Harmonies and Clashes
 
 **Harmonies** Combinations of circular granularities which facilitate EDA when plotted together
 
 **Clashes** Combinations of circular granularities which are conflicts in bringing out the best of EDA when plotted together
+
+--
+
+<span style="color:#c33c3c"> To formalize the theory to show why some displays work while are others unacceptable for most plausible purposes for effective display of quantitative phenomena.
 
 ---
 
