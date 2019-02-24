@@ -398,6 +398,13 @@ grid.arrange(p1, p2, p3, p4, ncol = 2)
 ]
 ---
 
+# criteria for plots that work vs plots that don't
+
+##Structurally Empty Combinations:
+
+##Non-functional Empty Combinations: 
+
+---
 
 ## <span style="color:DarkBlue"> Harmonies and Clashes
 
@@ -425,124 +432,52 @@ Examples:
 
 ---
 
-class middle center
+<!-- class: middle center -->
 
-# <span style="color:#c33c3c"> To formalize the theory to show why some displays work while are others unacceptable for most effective display of quantitative phenomenon.
+<!-- # <span style="color:#c33c3c"> Formalizing the theory to show why some displays work while others are ineffective for exploration of data -->
+
+<!-- --- -->
+
+#  <span style="color:DarkBlue"> Formalizing the theory to study properties of granularities
+---
+## Linear Time Granularities 
+
+_* By Bettini et al. "A Glossary of Time Granularity Concepts"*_
+
+**Definition:** A **time domain** is a pair $(T; \le)$ where $T$ is a non-empty set of time instants and $\le$ is a total order on $T$.
+
+**Definition:** A linear **granularity** is a mapping $G$ from the integers (the index set) to subsets of the time domain such that:
+
+  (C1) if $i < j$ and $G(i)$ and $G(j)$ are non-empty, then each element of $G(i)$ is less than all elements of $G(j)$, and  
+  (C2) if $i < k < j$ and $G(i)$ and $G(j)$ are non-empty, then $G(k)$ is non-empty.  
+  
+The first condition implies that the granules in a linear granularity are non-overlapping and their index order is same as time order
+
+_*These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicities in time*_
+
+## Circular Time Granularities
+
+**Definition:** A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
+
+---
+# Rules
 
 
-##Structurally Empty Combinations
-
-##Non-functional Empty Combinations
 
 
+# Illustration of Rules
 
+---
 ## Timeline
-```{r timeline, echo=FALSE}
-library(DiagrammeR)
+```{r Timeline, echo=FALSE, eval=TRUE}
+ library(kableExtra) 
+ library(tidyverse)
+ Date = c("February, 2019", "April, 2019", "May, 2019", "June 2019", "June - July, 2019", "December, 2019", "February, 2020","February, 2020","April, 2020","June, 2020", "July, 2020",  "December, 2020", "February, 2021", "May 2021")
+Description = c("Candidature Confirmation", "Visualization of probability distributions of deconstructed temporal data", "Tool for visualizing probability distribution of deconstructed temporal data", "geom_hdr","Internship", "Visualization of probability distributions of deconstructed spatio-temporal data", "Tool for visualizing probability distribution of spatio temporal data", "Mid Candidature Review", "Visualization of probability distributions of deconstructed spatio-temporal data", "Internship","Attend Conference", "Clustering of spatio-temporal data based on probability distributions","Pre-Submission Review", "Thesis Submission")
 
-mermaid("
-gantt
-dateFormat  YYYY-MM-DD
+Product = c("Milestone","Complete Paper", "R Package", "R Package", "Internship"," Draft Paper","R Package","Milestone", "Complete Paper", "Internship", "IASC isi 2020 (Tentative)", "Draft Paper","Milestone","Milestone")
 
-section 2019
-Candidature Confirmation      :done,          first_1,    2019-01-01, 2014-02-28
-Research Aim - 1 (Paper)      :active,        first_2,    2019-01-09, 2019-04-30
-Research Aim - 1 (R Package)  :active,        first_3,    2019-01-03, 2019-05-31
-geom_hdr (R Package)          :active,        first_4,    2019-01-04, 2019-06-30
-Internship                    :active,        first_5,    2019-06-01, 2019-07-31
-Research Aim-2                :active         first_6,    2019-07-01, 2019-12-31
-
-section 2020
-Completed, critical task      :crit, done,    import_1,   2014-01-06,24h
-Also done, also critical      :crit, done,    import_2,   after import_1, 2d
-Doing this important task now :crit, active,  import_3,   after import_2, 3d
-Next critical task            :crit,          import_4,   after import_3, 5d
-
-section 2021
-First extras                  :active,        extras_1,   after import_4,  3d
-Second helping                :               extras_2,   after extras_1, 20h
-More of the extras            :               extras_3,   after extras_1, 48h
-")
-```
-
-<!-- ```{r b105_days,echo=FALSE} -->
-
-<!-- Data_Halls_Residence <-read_rds("/Users/sgup0008/Documents/MRS_Consumption/DHResidence.rds") -->
-
-
-<!-- selected_units <- Data_Halls_Residence %>% filter(Source %in% c("B1 05","B2 15","B3 37", "B4 29", "BG 50")) -->
-
-<!-- selected_units$`Timestamp UTC` <- lubridate::ymd_hms(selected_units$`Timestamp UTC`) -->
-
-<!-- selected_units_tsibble <- as_tsibble(selected_units,key=id(Source),index=`Timestamp UTC`,tz="UTC") -->
-
-
-<!-- SU_Date <-selected_units %>% mutate(Date = as.POSIXct(`Timestamp UTC`,  format = "%Y-%m-%d %H:%M")) -->
-
-<!-- date.range = range(selected_units$`Timestamp UTC`) -->
-
-<!-- Reference_time =  seq( -->
-<!--   from=as.POSIXct(date.range[1], tz='UTC',"%Y-%m-%d %H:%M"), -->
-<!--   to=as.POSIXct(date.range[2], tz='UTC',"%Y-%m-%d %H:%M"), -->
-<!--   by='15 min' -->
-<!-- ) -->
-
-
-<!-- SU_Date.uniform <- expand.grid(time=Reference_time, -->
-<!--                           source=unique(SU_Date$Source)) %>% -->
-<!--   left_join(SU_Date, by=c('time'='Date'), 'source') -->
-
-
-
-
-<!-- vic_holidays <- holiday_aus(2018, state = "VIC") -->
-<!-- SU_uniform_mutate <- SU_Date.uniform %>% mutate(date = date(time),wday = wday(time, label = TRUE, abbr = TRUE, -->
-<!--                       week_start = 1), -->
-<!--                       month = month(time, label = TRUE, abbr = TRUE), -->
-<!--                       year = year(time), -->
-<!--                       hour = hour(time),work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>% -->
-<!--                         mutate(work = ifelse(date %in% vic_holidays$date, 0, work)) -->
-
-
-
-<!--  s1 <- SU_uniform_mutate %>% filter(Source=="B4 29") %>% mutate(work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0)) %>% -->
-<!--   mutate(work = ifelse(date %in% vic_holidays$date, 0, work)) -->
-
-<!--  s2 <- ts(s1$Value,frequency = 48) -->
-
-<!--  autoplot(s2) + ylab("Total kwh") -->
-<!-- ``` -->
-
-
-
-<!-- ###Volume : Approx. 40 billion half hourly observations   -->
-
-<!-- --- -->
-<!-- ### <span style="color:DarkBlue"> Data description (~ 40 billion half hourly observations) -->
-
-<!-- .pull-left[ -->
-<!-- #### Source -->
-<!-- ] -->
-<!-- .pull-right[Data61, CSIRO -->
-<!-- ] -->
-<!-- -- -->
-<!-- .pull-left[ -->
-<!-- #### Frequency -->
-<!-- ] -->
-<!-- .pull-right[Half hourly interval meter reading (Kwh) -->
-<!-- ] -->
-<!-- -- -->
-<!-- .pull-left[ -->
-<!-- #### Time Frame -->
-<!-- ] -->
-<!-- .pull-right[2012 to 2014 -->
-<!-- ] -->
-<!-- -- -->
-<!-- .pull-left[ -->
-<!-- #### Spread -->
-<!-- ] -->
-<!-- .pull-right[14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney -->
-<!-- ] -->
-<!-- --- -->
-
-<!-- Challenge for visualisation is handling the volume of data supplied by smart meters and derive insights for efficient usage. -->
+out <- cbind(Date, Description, Product)
+out1 <- as_tibble(out)
+knitr::kable(out) 
+# kable_styling(out1, font_size=20 ,position = "left",latex_options = "scale_down")
