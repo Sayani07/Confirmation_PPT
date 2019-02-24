@@ -121,10 +121,11 @@ Half hourly interval meter reading (Kwh)
 Spatio - Temporal Data
 ]
 ---
+class: middle left
+
 ## <span style="color:DarkBlue">  Research Aim
 
-class: middle left
-Provide a platform to systematically explore multiple perspectives of spatio-temporal data and support the exploratory analysis to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through probability distributions
+### Provide a platform to <span style="color:Crimson"> systematically <span style="color:Black"> explore multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> and support the <span style="color:Crimson"> exploratory analysis<span style="color:Black">  to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> probability distributions <span style="color:Black"> in an <span style="color:Crimson"> open source environment
 
 ---
 ## <span style="color:DarkBlue">  What is Exploratory Data Analysis?
@@ -201,7 +202,7 @@ class: middle center
 
 <!-- Data description:  30 minutes interval smart meter data from Monash Residential Services from April 4, 2018 to May 31, 2018 -->
 
-```{r okaygraph1, out.width="50%",echo=FALSE}
+```{r okaygraph1, out.height=400, out.width = "80%",echo=FALSE}
 load("Units_Data.Rdata")
 
 Units_Data$`Timestamp UTC` <-lubridate::ymd_hms(Units_Data$`Timestamp UTC`)
@@ -231,13 +232,13 @@ p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
                      week_start = 1)) %>%
   ggplot(aes(x=wday, y=dkwh)) + geom_boxplot()
 
-grid.arrange(p1, p2,  nrow = 2)
+grid.arrange(p1, p2,  ncol = 2)
 
 ```
 ---
 ## Across hours, by day of the week
 
-```{r okaygraph2, out.width="50%",echo=FALSE}
+```{r okaygraph2, out.height=400, out.width = "80%",echo=FALSE}
 p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   group_by(wday,hour) %>%
   ggplot(aes(x=as.factor(hour), y=Value,group=hour)) + geom_boxplot() +
@@ -252,14 +253,14 @@ p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   ylab("Total kwh") +
   xlab("Hours") + scale_x_discrete(breaks = seq(1,24,2))  
 
-grid.arrange(p3, p4,  nrow = 2)
+grid.arrange(p3, p4,  ncol = 2)
 
 ```
 ---
 
 ## Across hours, by work days and non-work days
 
-```{r okaygraph, out.width="50%",echo=FALSE}
+```{r okaygraph, out.height=400, out.width = "80%",echo=FALSE}
  s1 <- SU_uniform_mutate %>%
   mutate(work = ifelse(date %in% vic_holidays$date, 0, work))
 
@@ -282,7 +283,7 @@ b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>%
  
 p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 1)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")  
 
-grid.arrange(p5, p6,  nrow = 2)
+grid.arrange(p5, p6,  ncol = 2)
 
 
 ```
