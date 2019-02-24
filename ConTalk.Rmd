@@ -523,9 +523,8 @@ Examples: DoM and DoY
 
 Examples: Working/Non-working day and HoD
 
----
 
-# Rules to assess Clashes
+## Rules to assess Clashes
 
 #### Structurally Empty Combinations
 **Rule 1** 
@@ -547,43 +546,43 @@ Choosing $a, b, m_1>1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the
 Then $T \ge m_1m_2k$, k>30 (approx) for density estimates
 ---
 
-# Illustration of Rules
+<!-- # Illustration of Rules -->
 
 
-```{r chck1, echo=FALSE, out.width="50%",comment=FALSE}
-# For validating rule 1, put any value of p,  
-# m1 and m2 to check if there is any expected missing combination
-rule_1 <- function(p, m1, m2)
-{
-  L1 <-  ceiling(p) %% m1  
-  L2 <-  ceiling(p) %% m2
-  data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1))  
-  # data_s %>% ggplot(aes(x = as.factor(c1), y=c2))+ 
-  # geom_point(alpha=0.005)
- #All possible combinations that are possible
- Allcomb <- tidyr::expand(data_s, L1, L2)
- #All possible combinations that  exist
- combexist <- tidyr::expand(data_s, nesting(L1, L2))
- #All possible combination that are missing
- cmbmiss <- Allcomb %>% anti_join(combexist) 
- #Print missing combinations
-}
-```
-.left-column[
+<!-- ```{r chck1, echo=FALSE, out.width="50%",comment=FALSE} -->
+<!-- # For validating rule 1, put any value of p,   -->
+<!-- # m1 and m2 to check if there is any expected missing combination -->
+<!-- rule_1 <- function(p, m1, m2) -->
+<!-- { -->
+<!--   L1 <-  ceiling(p) %% m1   -->
+<!--   L2 <-  ceiling(p) %% m2 -->
+<!--   data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1))   -->
+<!--   # data_s %>% ggplot(aes(x = as.factor(c1), y=c2))+  -->
+<!--   # geom_point(alpha=0.005) -->
+<!--  #All possible combinations that are possible -->
+<!--  Allcomb <- tidyr::expand(data_s, L1, L2) -->
+<!--  #All possible combinations that  exist -->
+<!--  combexist <- tidyr::expand(data_s, nesting(L1, L2)) -->
+<!--  #All possible combination that are missing -->
+<!--  cmbmiss <- Allcomb %>% anti_join(combexist)  -->
+<!--  #Print missing combinations -->
+<!-- } -->
+<!-- ``` -->
+<!-- .left-column[ -->
 
-.pull-left[
-```{r rule1, echo=FALSE, eval=TRUE, results='asis',fig.cap=" (Top) of two circular granularities with different modular periods, (Bottom) Missing combinations for each case"}
-s <- 1:8 
-C1 <- s %% 2
-C2 <- s %% 4
+<!-- .pull-left[ -->
+<!-- ```{r rule1, echo=FALSE, eval=TRUE, results='asis',fig.cap=" (Top) of two circular granularities with different modular periods, (Bottom) Missing combinations for each case"} -->
+<!-- s <- 1:8  -->
+<!-- C1 <- s %% 2 -->
+<!-- C2 <- s %% 4 -->
 
-C3 <- s %%2
-C4 <- s %%3
+<!-- C3 <- s %%2 -->
+<!-- C4 <- s %%3 -->
 
-library(knitr)
-library(xtable)
-knitr::kable(cbind(s, C1, C2), format = "html")
-```
+<!-- library(knitr) -->
+<!-- library(xtable) -->
+<!-- knitr::kable(cbind(s, C1, C2), format = "html") -->
+<!-- ``` -->
 
 ]
 
