@@ -25,9 +25,9 @@ library(lubridate)
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=8))
 ```
 
-#  Motivation
+# <span style="color:DarkBlue"> Motivation
 
-## Electricity smart meter technology
+## Electricity smart meter technology 
 
 Smart meters record electricity usage (per kWh) every 30 minutes and send this information to the electricity retailer for billing
 
@@ -59,17 +59,20 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 
 ---
 
-## Data description
+## <span style="color:DarkBlue">  Data description (~ 40 billion half hourly observations)
 
 .pull-left[
 
 Source
 <br>
 <br>
+<br>
 Frequency
 <br>
 <br>
+<br>
 Time Frame
+<br>
 <br>
 <br>
 Spread
@@ -84,73 +87,63 @@ Type
 Data61, CSIRO
 <br>
 <br>
+<br>
 Half hourly interval meter reading (Kwh)
+<br>
 <br>
 <br>
 2012 to 2014
 <br>
 <br>
+<br>
 14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
 <br>
 <br>
-Spatio-Temporal Data
+Spatio - Temporal Data
 ]
-
-###Volume : Approx. 40 billion half hourly observations  
-
----
-### Data description (~ 40 billion half hourly observations)
-
-.pull-left[
-#### Source
-]
-.pull-right[Data61, CSIRO
-]
---
-.pull-left[
-#### Frequency
-]
-.pull-right[Half hourly interval meter reading (Kwh)
-]
---
-.pull-left[
-#### Time Frame
-]
-.pull-right[2012 to 2014
-]
---
-.pull-left[
-#### Spread
-]
-.pull-right[14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
-]
-
-
 ---
 
-<!-- Challenge for visualisation is handling the volume of data supplied by smart meters and derive insights for efficient usage. -->
+## <span style="color:DarkBlue">  What is Exploratory Data Analysis?
+
+.pull-left[
+<br>
+.center[
+<img src="EDA.png" height=400px>
+]
+]
+.pull-right[
+<br>
+<br>
+Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed
+
+### <span style="color:DarkBlue"> How can it help?
+
+ - Big problem broken into pieces by focussing on subsets
+<br>
+<br>
+ - Visualization at varying resolutions of time and space
+<br>
+<br>
+ - Find regular patterns/ anomalies or pockets of similar behavior
+<br>
+<br>
+ - Each visual representation poses a question
+<br>
+<br>
+ - Action: draw insights or refine question
+]
+
 ---
-# What is Exploratory Data Analysis? How can it help?
 
+# <span style="color:DarkBlue"> Research goals
 
-```{r, out.width="0.3\\linewidth",include=TRUE, fig.align="center", echo=FALSE}
-knitr::include_graphics("EDA.png")
-```
+### Visualization of probability distributions of deconstructed temporal data
+
+### Visualization of probability distributions of deconstructed spatio- temporal data
+
+### Clustering of spatio-temporal data based on probability distributions
+
 ---
-
-# Research goals
-
-## Research Aim 1
-Visualization of probability distributions of deconstructed temporal data
-
-## Research Aim 2
-Visualization of probability distributions of deconstructed spatio- temporal data
-
-## Research Aim 3
-Clustering of spatio-temporal data based on probability distributions
-
-
-
 ### Arrangement of time : Linear or Cyclic
 
  - Linear granularities like days, weeks, months, years
@@ -401,3 +394,37 @@ More of the extras            :               extras_3,   after extras_1, 48h
 
 <!--  autoplot(s2) + ylab("Total kwh") -->
 <!-- ``` -->
+
+
+
+<!-- ###Volume : Approx. 40 billion half hourly observations   -->
+
+<!-- --- -->
+<!-- ### <span style="color:DarkBlue"> Data description (~ 40 billion half hourly observations) -->
+
+<!-- .pull-left[ -->
+<!-- #### Source -->
+<!-- ] -->
+<!-- .pull-right[Data61, CSIRO -->
+<!-- ] -->
+<!-- -- -->
+<!-- .pull-left[ -->
+<!-- #### Frequency -->
+<!-- ] -->
+<!-- .pull-right[Half hourly interval meter reading (Kwh) -->
+<!-- ] -->
+<!-- -- -->
+<!-- .pull-left[ -->
+<!-- #### Time Frame -->
+<!-- ] -->
+<!-- .pull-right[2012 to 2014 -->
+<!-- ] -->
+<!-- -- -->
+<!-- .pull-left[ -->
+<!-- #### Spread -->
+<!-- ] -->
+<!-- .pull-right[14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney -->
+<!-- ] -->
+<!-- --- -->
+
+<!-- Challenge for visualisation is handling the volume of data supplied by smart meters and derive insights for efficient usage. -->
