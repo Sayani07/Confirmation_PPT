@@ -490,7 +490,7 @@ A linear **granularity** is a mapping $G$ from the integers to subsets of the ti
 The first condition implies that the granules in a linear granularity are non-overlapping and their index order is same as time order
 <br>
 <br>
-<span style="color:Crimson">  These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicities in time
+<span style="color:Crimson">  These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicity in time
 
 ---
 
