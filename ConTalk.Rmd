@@ -335,9 +335,11 @@ p6
 
 class: middle left
 
-### <span style="color:DarkBlue"> Aggregating information across different circular granularities communicates completely different aspects of data
+# <span style="color:DarkBlue"> Interpretations
 
-### <span style="color:DarkBlue"> Exhaustive sets of visual representation required for multiple perspectives on data
+- ### Aggregating information across different circular granularities communicates completely different aspects of data
+<br>
+- ### Exhaustive sets of visual representation required for multiple perspectives on data
 
 ---
 
