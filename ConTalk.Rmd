@@ -5,7 +5,7 @@ author: "<br> Sayani Gupta <br>"
 date: "February 28, 2019 <br>"
 output:
   xaringan::moon_reader:
-    css: ["default", "remark.css"]
+    css: ["default", "data_viz_theme.css"]
     self_contained: false
     nature:
       ratio: 16:9
@@ -28,22 +28,13 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 # <span style="color:DarkBlue"> Agenda
 
 - Motivation
-
 - Research Aim
-
 - What is EDA? How it can help?
-
-- Research Objectives
-
+- Research objectives
   - Visualizing probability distributions on deconstructed time
-  
   - Spatio-temporal granularities and probability distribution plots
-  
   - Clustering algorithms for grouping probability distributions on spatio-temporal granularities
-  
-
 - Timeline
-
 - Acknowledgements
 
 ---
@@ -55,29 +46,18 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 Smart meters record electricity usage (per kWh) every 30 minutes and send this information to the electricity retailer for billing
 
 .pull-left[
-
 **Consumers** can save considerable amount on their electricity bill by 
 <br>
 - Switching on their hot water heater or do laundry when energy is cheaper, or when their solar system is generating surplus energy 
-
 - Switching off appliances during peak demands
-
 - Check usage and compare with similar homes 
-
-<!-- All homes and businesses in Victoria are already fitted with smart meters -->
-
-<!-- Both consumers and retailers benefit from greater electricity consumption information -->
 ]
 .pull-right[
 
 **Retailers** can reduce costs and increase efficiency
-<br>
-<br>
-- lower metering and connection fees 
-
-- Draw insights into when customer is home, or sleeping, or even what appliances they are using based on usage figures
-
-- Reward customers for mindful usage
+- Lowering metering and connection fees 
+- Drawing insights into when customer is home, or sleeping, or even what appliances they are using based on usage figures
+- Rewarding customers for mindful usage
 ]
 
 ---
@@ -129,7 +109,7 @@ class: middle left
 
 ## <span style="color:DarkBlue">  Research Aim
 
-### Provide a platform to <span style="color:Crimson"> systematically <span style="color:Black"> explore multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> probability distributions <span style="color:Black"> in an <span style="color:Crimson"> open source environment
+### Provide a platform to <span style="color:Crimson"> systematically <span style="color:Black"> explore multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> probability distributions <span style="color:Black">
 
 ---
 ## <span style="color:DarkBlue">  What is Exploratory Data Analysis?
@@ -201,7 +181,7 @@ b) Cyclic
 <span style="color:#c33c3c"> **Linear granularities** <span style="color:Black"> : Days, weeks, months, years
 <br>
 <br>
-<span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
+<span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HoD and nearly circular granularities like DoM or WoM   
 ]
 
 .pull-right[
@@ -245,7 +225,7 @@ p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
   ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + 
-    coord_cartesian(ylim = c(0,0.75)) + ggtitle("B1 05")
+    coord_cartesian(ylim = c(0,0.6)) + ggtitle("B1 05")
    
 p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   group_by(date) %>%
@@ -253,7 +233,7 @@ p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
   ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() +
-    coord_cartesian(ylim = c(0,0.75)) + ggtitle("B4 29")
+    coord_cartesian(ylim = c(0,0.6)) + ggtitle("B4 29")
 
 ```
 .pull-left[
