@@ -195,13 +195,17 @@ class: middle center
 ---
 class: middle left
 
-## <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
+# <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
 
-### Data description: 
-Source ~  Buildings and Property Division at Monash University  
-Frequency ~ 30 minutes interval smart meter data of Monash Residential Services  
-Time frame ~ April 4, 2018 to May 31, 2018  
-Spread: Two living units "B105" and "B429"  
+## Data description: 
+**Source** ~  Buildings and Property Division at Monash University  
+<br>
+**Frequency** ~ 30 minutes interval smart meter data of Monash 
+Residential Services  
+<br>
+**Time frame** ~ April 4, 2018 to May 31, 2018  
+<br>
+**Spread** ~ 73 living units "B1 05" and "B4 29"  
 ---
 
 # <span style="color:DarkBlue"> Across DoW
