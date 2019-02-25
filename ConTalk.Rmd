@@ -208,7 +208,7 @@ Residential Services
 **Spread** ~ 73 living units (B1 05 and B4 29 chosen for analysis)  
 ---
 
-# <span style="color:DarkBlue"> Across DoW
+# <span style="color:DarkBlue"> Across Day-of-Week
 
 ```{r okaygraph1, fig.height=6, fig.width=4,echo=FALSE}
 load("Units_Data.Rdata")
@@ -231,7 +231,7 @@ p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + 
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ylab("Daily Consumpttion in KwH ") + 
     coord_cartesian(ylim = c(0,0.6)) + ggtitle("B1 05")
    
 p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
@@ -239,7 +239,7 @@ p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() +
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ylab("Daily Consumpttion in KwH ") +
     coord_cartesian(ylim = c(0,0.6)) + ggtitle("B4 29")
 
 ```
@@ -254,7 +254,7 @@ p2
 ```
 ]
 ---
-##<span style="color:DarkBlue">   Across HoD and DoW
+##<span style="color:DarkBlue"> Across Hour-of-Day and Day-of-Week
 
 ```{r okaygraph2,echo=FALSE}
 p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
@@ -272,8 +272,6 @@ p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   ylab("Total kwh") +
   xlab("Hours") +  
     coord_cartesian(ylim = c(0,0.75))+ ggtitle("B4 29")
-
-
 
 ```
 .pull-left[
