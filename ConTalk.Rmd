@@ -132,19 +132,15 @@ class: middle left
 <br>
 Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed
 
-### <span style="color:DarkBlue"> How can it help?
+###  How can it help?
 
  - Big problem broken into pieces by focusing on subsets
 <br>
-<br>
  - Visualization of <span style="color:Crimson"> probability distributions <span style="color:Black"> at varying resolutions of time and space
-<br>
 <br>
  - Find regular patterns/ anomalies or pockets of similar behavior
 <br>
-<br>
  - Each visual representation poses a question
-<br>
 <br>
  - Action: draw insights or refine question
 ]
@@ -155,13 +151,13 @@ class: middle left
 
 # <span style="color:DarkBlue"> Research objectives
 
-### <span style="color:Black"> Visualization of probability distributions of deconstructed temporal data
+- ### Visualization of probability distributions of deconstructed temporal data
 <br>
 <br>
-### <span style="color:Black"> Spatio-temporal granularities and probability distribution plots
+- ### Spatio-temporal granularities and probability distribution plots
 <br>
 <br>
-### <span style="color:Black"> Clustering algorithms for grouping probability distributions on spatio-temporal granularities
+- ### Clustering algorithms for grouping probability distributions on spatio-temporal granularities
 <br>
 <br>
   
