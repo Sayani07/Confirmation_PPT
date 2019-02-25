@@ -66,27 +66,28 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 
 .pull-left[
 
-.large[Source]
+.center-left[
+- Source
 <br>
 <br>
-<br>
-.large[Frequency]
-<br>
+- Frequency
 <br>
 <br>
-.large[Time Frame]
+- Time Frame
 <br>
 <br>
-<br>
-.large[Spread]
-<br>
+- Spread
 <br>
 <br>
-Type
+- Type
+<br>
+<br>
+- Dimension
+]
 ]
 
 .pull-right[
-
+.center-left[
 Data61, CSIRO
 <br>
 <br>
@@ -103,7 +104,13 @@ Half hourly interval meter reading (Kwh)
 <br>
 <br>
 Spatio - Temporal Data
+<br>
+<br>
+<br>
+Univariate
 ]
+]
+
 ---
 class: middle left
 
