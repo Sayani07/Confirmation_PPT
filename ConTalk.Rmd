@@ -207,8 +207,9 @@ Residential Services
 <br>
 **Spread** ~ 73 living units (B1 05 and B4 29 chosen for analysis)  
 ---
+class: top center
 
-# <span style="color:DarkBlue"> Across Day-of-Week
+# <span style="color:DarkBlue"> Across <span style="color:Crimson">Day-of-Week
 
 ```{r okaygraph1, fig.height=6, fig.width=4,echo=FALSE}
 load("Units_Data.Rdata")
@@ -231,7 +232,7 @@ p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ylab("Daily Consumpttion in KwH ") + 
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ylab("Energy consumption in KwH ") +  xlab("Day-of-Week") +
     coord_cartesian(ylim = c(0,0.6)) + ggtitle("B1 05")
    
 p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
@@ -239,7 +240,7 @@ p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ylab("Daily Consumpttion in KwH ") +
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ylab("Energy consumption in KwH ") + xlab("Day-of-Week") +
     coord_cartesian(ylim = c(0,0.6)) + ggtitle("B4 29")
 
 ```
@@ -254,24 +255,26 @@ p2
 ```
 ]
 ---
-##<span style="color:DarkBlue"> Across Hour-of-Day and Day-of-Week
+class: top center
+
+##<span style="color:DarkBlue"> Across  <span style="color:Crimson"> Day-of-Week <span style="color:DarkBlue"> and <span style="color:Crimson"> Hour-of-Day 
 
 ```{r okaygraph2,echo=FALSE}
 p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
-  group_by(wday,hour) %>%
+  group_by(wday,hour) %>% filter(wday %in% c("Tue","Wed","Thu","Fri","Sat","Sun")) %>% 
   ggplot(aes(x=as.factor(hour), y=Value,group=hour)) + geom_boxplot() +
   facet_wrap(~wday) + 
-  ylab("Total kwh") +
-  xlab("Hours")+ 
-    coord_cartesian(ylim = c(0,0.75))+ ggtitle("B1 05")
+  ylab("Daily Consumpttion in KwH") +
+  xlab("Hour-of-Day")+ 
+    coord_cartesian(xlim= c(0,23), ylim = c(0,0.75))+  scale_x_discrete(breaks=c(0,5,10,15,20))+  ggtitle("B1 05")
 
 p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
-  group_by(wday,hour) %>%
+  group_by(wday,hour) %>% filter(wday %in% c("Tue","Wed","Thu","Fri","Sat","Sun")) %>% 
   ggplot(aes(x=as.factor(hour), y=Value, group=hour)) + geom_boxplot() +
   facet_wrap(~wday) + 
-  ylab("Total kwh") +
-  xlab("Hours") +  
-    coord_cartesian(ylim = c(0,0.75))+ ggtitle("B4 29")
+  ylab("Daily Consumpttion in KwH") +
+  xlab("Hour-of-Day") +  
+    coord_cartesian(xlim= c(0,23), ylim = c(0,0.75))+ scale_x_discrete(breaks=c(0,5,10,15,20))+  ggtitle("B4 29")
 
 ```
 .pull-left[
@@ -286,9 +289,11 @@ p4
 ```
 ]
 
----
 
-## <span style="color:DarkBlue">  Across HoD and Work-Day/Non-Work-Day
+---
+class: top center
+
+## <span style="color:DarkBlue">  Across <span style="color:Crimson">Hour-of-Day <span style="color:DarkBlue"> and <span style="color:Crimson">Work-Day/Non-Work-Day
 
 ```{r okaygraph, fig.height=6, fig.width=4,echo=FALSE}
  s1 <- SU_uniform_mutate %>%
