@@ -528,115 +528,137 @@ Choosing $a, b, m_1>1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the
 Then $T \ge m_1m_2k$, k>30 (approx) for density estimates
 ---
 
-<!-- # Illustration of Rules -->
 
+.pull-left[
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-<!-- ```{r chck1, echo=FALSE, out.width="50%",comment=FALSE} -->
-<!-- # For validating rule 1, put any value of p,   -->
-<!-- # m1 and m2 to check if there is any expected missing combination -->
-<!-- rule_1 <- function(p, m1, m2) -->
-<!-- { -->
-<!--   L1 <-  ceiling(p) %% m1   -->
-<!--   L2 <-  ceiling(p) %% m2 -->
-<!--   data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1))   -->
-<!--   # data_s %>% ggplot(aes(x = as.factor(c1), y=c2))+  -->
-<!--   # geom_point(alpha=0.005) -->
-<!--  #All possible combinations that are possible -->
-<!--  Allcomb <- tidyr::expand(data_s, L1, L2) -->
-<!--  #All possible combinations that  exist -->
-<!--  combexist <- tidyr::expand(data_s, nesting(L1, L2)) -->
-<!--  #All possible combination that are missing -->
-<!--  cmbmiss <- Allcomb %>% anti_join(combexist)  -->
-<!--  #Print missing combinations -->
-<!-- } -->
-<!-- ``` -->
-<!-- .left-column[ -->
-
-<!-- .pull-left[ -->
-<!-- ```{r rule1, echo=FALSE, eval=TRUE, results='asis',fig.cap=" (Top) of two circular granularities with different modular periods, (Bottom) Missing combinations for each case"} -->
-<!-- s <- 1:8  -->
-<!-- C1 <- s %% 2 -->
-<!-- C2 <- s %% 4 -->
-
-<!-- C3 <- s %%2 -->
-<!-- C4 <- s %%3 -->
-
-<!-- library(knitr) -->
-<!-- library(xtable) -->
-<!-- knitr::kable(cbind(s, C1, C2), format = "html") -->
-<!-- ``` -->
-
-<!-- ] -->
-
-<!-- .pull-left[ -->
-<!-- ```{r, echo=FALSE} -->
-<!-- v11 <- knitr::kable(rule_1(1:8,m1 = 2, m2 = 4), format='html') -->
-<!-- v11 -->
-<!-- ``` -->
-<!-- ] -->
-<!-- ] -->
-
-
-
-```{r checkrule2, echo=FALSE, out.width="50%"}
-
-# rule_2 <-  function(p,a,b,m1,m2)
-#   
-# {
-#   L1 <-  ceiling((p/a)) %% m1
-#   L2 <-  ceiling((p/b)) %% m2
-#   data_s <-tibble(L1, L2, data =runif(p, min = 0, max = 1)) 
-#   # data_s %>% ggplot(aes(x = as.factor(c1), y=c2)) + geom_point(alpha=0.005)
-#   #All posiible combination that are possible
-#   Allcomb <- tidyr::expand(data_s, L1, L2)
-#   #All possible combination that can exist
-#   combexist <- tidyr::expand(data_s, nesting(L1, L2))
-#   #All possible combination that can exist
-#   cmbmiss <- Allcomb %>% anti_join(combexist) 
-#   #Print missing combinations
-#   #print(cmbmiss)
-# }
-
-```
-
-<!-- .right-column[ -->
-<!-- .pull-left[ -->
-<!-- ```{r dataeg2, echo=FALSE, eval=TRUE, results='asis'} -->
-<!-- s <- c(1:20)  -->
-<!-- C5 <-   ceiling((s/3)) %% 2 -->
-<!-- C6 <-   ceiling((s/6)) %% 3 -->
-<!-- C7 <-   ceiling((s/3)) %% 5 -->
-<!-- C8 <-   ceiling((s/5)) %% 3 -->
-<!-- C9 <-   ceiling((s/2)) %% 3 -->
-<!-- C10 <-   ceiling((s/6)) %% 4 -->
-
-
-<!-- knitr::kable(cbind(s, C9, C10), format = "html") %>% kableExtra::kable_styling(font_size=10) -->
-<!-- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")%>% kableExtra::kable_styling(font_size=10) -->
-<!-- ``` -->
-<!-- ] -->
-
-<!-- .pull-right[ -->
-<!-- ```{r, echo=FALSE} -->
-<!-- v12 <- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html") -->
-<!-- v12 -->
-<!-- ``` -->
-<!-- ] -->
-<!-- ] -->
-
-## <span style="color:DarkBlue"> Timeline
-```{r Timeline, echo=FALSE, eval=TRUE}
- library(kableExtra) 
- library(tidyverse)
- Date = c("February, 2019", "April, 2019", "May, 2019", "June 2019", "June - July, 2019", "December, 2019", "February, 2020","February, 2020","April, 2020","June, 2020", "July, 2020",  "December, 2020", "February, 2021", "May 2021")
-Description = c("Candidature Confirmation", "Visualization of probability distributions of deconstructed temporal data", "Tool for visualizing probability distribution of deconstructed temporal data", "geom_hdr","Internship", "Visualization of probability distributions of deconstructed spatio-temporal data", "Tool for visualizing probability distribution of spatio temporal data", "Mid Candidature Review", "Visualization of probability distributions of deconstructed spatio-temporal data", "Internship","Attend Conference", "Clustering of spatio-temporal data based on probability distributions","Pre-Submission Review", "Thesis Submission")
-
-Product = c("Milestone","Complete Paper", "R Package", "R Package", "Internship"," Draft Paper","R Package","Milestone", "Complete Paper", "Internship", "IASC isi 2020 (Tentative)", "Draft Paper","Milestone","Milestone")
-
-out <- cbind(Date, Description, Product)
-out1 <- as_tibble(out)
-knitr::kable(out) 
-```
+# <span style="color:DarkBlue">Timeline
+]
+.pull-right[
+.center-left[
+<table width="100%"> 
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-ajri{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;color:#333333;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-253e{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gva0{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;color:#009901;border-color:inherit;text-align:left}
+.tg .tg-u1mr{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;border-color:inherit;text-align:left}
+.tg .tg-93vd{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;color:#333333;border-color:inherit;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-gva0">Year</th>
+    <th class="tg-gva0">Period</th>
+    <th class="tg-gva0">Description</th>
+    <th class="tg-gva0">Product</th>
+  </tr>
+  <tr>
+    <td class="tg-u1mr">2019</td>
+    <td class="tg-u1mr">February</td>
+    <td class="tg-u1mr">Candidature Confirmation</td>
+    <td class="tg-u1mr">Milestone</td>
+  </tr>
+  <tr>
+    <td class="tg-u1mr"></td>
+    <td class="tg-u1mr">April</td>
+    <td class="tg-u1mr">Research Aim-1</td>
+    <td class="tg-u1mr">Paper</td>
+  </tr>
+  <tr>
+    <td class="tg-u1mr"></td>
+    <td class="tg-u1mr">May</td>
+    <td class="tg-u1mr">Research Aim-1</td>
+    <td class="tg-u1mr">R Package</td>
+  </tr>
+  <tr>
+    <td class="tg-253e"></td>
+    <td class="tg-253e">June</td>
+    <td class="tg-253e">geom_hdr</td>
+    <td class="tg-253e">R Package</td>
+  </tr>
+  <tr>
+    <td class="tg-253e"></td>
+    <td class="tg-253e">June - July</td>
+    <td class="tg-253e">Internship (Tentative)</td>
+    <td class="tg-253e">Internship</td>
+  </tr>
+  <tr>
+    <td class="tg-253e"></td>
+    <td class="tg-253e">December</td>
+    <td class="tg-253e">Research Aim-2</td>
+    <td class="tg-253e">Draft Paper</td>
+  </tr>
+  <tr>
+    <td class="tg-253e">2020</td>
+    <td class="tg-253e">February</td>
+    <td class="tg-253e">Mid-Candidature Review</td>
+    <td class="tg-253e">Milestone</td>
+  </tr>
+  <tr>
+    <td class="tg-253e"></td>
+    <td class="tg-253e">April </td>
+    <td class="tg-253e">Research Aim - 2</td>
+    <td class="tg-253e">Paper</td>
+  </tr>
+  <tr>
+    <td class="tg-253e"></td>
+    <td class="tg-253e">May</td>
+    <td class="tg-253e">Research Aim - 2</td>
+    <td class="tg-253e">R Package</td>
+  </tr>
+  <tr>
+    <td class="tg-253e"></td>
+    <td class="tg-253e">June</td>
+    <td class="tg-253e">Research Internship</td>
+    <td class="tg-253e">Internship</td>
+  </tr>
+  <tr>
+    <td class="tg-253e"></td>
+    <td class="tg-253e">July</td>
+    <td class="tg-253e">IASC isi 2020</td>
+    <td class="tg-253e">Conference</td>
+  </tr>
+  <tr>
+    <td class="tg-ajri"></td>
+    <td class="tg-ajri">December</td>
+    <td class="tg-ajri">Research Aim-3</td>
+    <td class="tg-ajri">Draft Paper</td>
+  </tr>
+  <tr>
+    <td class="tg-ajri">2021</td>
+    <td class="tg-ajri">February</td>
+    <td class="tg-ajri">Pre-submission Review</td>
+    <td class="tg-ajri">Milestone</td>
+  </tr>
+  <tr>
+    <td class="tg-ajri"></td>
+    <td class="tg-ajri">March</td>
+    <td class="tg-ajri">Research Aim - 3</td>
+    <td class="tg-ajri">Paper</td>
+  </tr>
+  <tr>
+    <td class="tg-ajri"></td>
+    <td class="tg-ajri">April</td>
+    <td class="tg-ajri">Research Aim - 3</td>
+    <td class="tg-ajri">R Package</td>
+  </tr>
+  <tr>
+    <td class="tg-ajri"></td>
+    <td class="tg-ajri">May</td>
+    <td class="tg-ajri">Thesis Submission</td>
+    <td class="tg-ajri">Milestone</td>
+  </tr>
+</table>
+]
+]
 
 ---
 
@@ -676,4 +698,3 @@ Dr Peter Toscas
 class: middle center
 
 ## <span style="color:DarkBlue"> Questions?
-  
