@@ -516,11 +516,11 @@ A **circular granularity** $C$ with a modular period m is defined to be a mappin
 <br>
 <br>
 ###  <span style="color: #1B9E77"> Illustrative calendar categorisations
-```{r Modarith, echo=FALSE, out.width="100%"}
+```{r Modarith, echo=FALSE, out.width="90%"}
 knitr::include_graphics("modarith-table.png")
 ```
-.tiny[ $n_i$ is the number of categories created by $C_i$  
-time index ~ hourly ]
+<font size="-1"> $n_i$ is the number of categories created by $C_i$  
+time index ~ hourly 
 ]
 
 ---
