@@ -306,8 +306,8 @@ b1_Quantile <- s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>%
            .f = ~ tibble(Quantile = .x,
                              Value = quantile(x, probs = .x,na.rm=TRUE)))
    })
- 
-p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + 
+# checking error
+p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~ work, labeller = "label_both") + 
 ylab("Daily Consumpttion in KwH") +  xlab("Hour-of-Day")+ coord_cartesian(ylim = c(0,0.75)) + ggtitle("B1 05")
 
 b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>% 
