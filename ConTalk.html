@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 # &lt;span style="color:DarkBlue"&gt; Agenda
 
 - Motivation
-- Research Aim
+- Research aim
 - What is EDA? How it can help?
 - Research objectives
   - Visualizing probability distributions on deconstructed time
@@ -110,7 +110,7 @@ Univariate
 ---
 class: middle left
 
-# &lt;span style="color:DarkBlue"&gt;  Research Aim
+# &lt;span style="color:DarkBlue"&gt;  Research aim
 
 ## &lt;span style="color:Black"&gt; Provide a platform to &lt;span style="color:Crimson"&gt; systematically explore &lt;span style="color:Black"&gt;  multiple perspectives of &lt;span style="color:Crimson"&gt; spatio-temporal data &lt;span style="color:Black"&gt; across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through &lt;span style="color:Crimson"&gt; visualizing probability distributions &lt;span style="color:Black"&gt;
 
@@ -209,10 +209,10 @@ class: top center
 
 
 .pull-left[
-![](ConTalk_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+![](ConTalk_files/figure-html/b105-1-1.png)&lt;!-- --&gt;
 ]
 .pull.right[
-![](ConTalk_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](ConTalk_files/figure-html/b429-1-1.png)&lt;!-- --&gt;
 ]
 ---
 class: top center
@@ -221,11 +221,11 @@ class: top center
 
 
 .pull-left[
-![](ConTalk_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](ConTalk_files/figure-html/b105-2-1.png)&lt;!-- --&gt;
 ]
 
 .pull.right[
-![](ConTalk_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](ConTalk_files/figure-html/b429-2-1.png)&lt;!-- --&gt;
 ]
 
 
@@ -236,10 +236,10 @@ class: top center
 
 
 .pull-left[
-![](ConTalk_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](ConTalk_files/figure-html/b105-3-1.png)&lt;!-- --&gt;
 ]
 .pull.right[
-![](ConTalk_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](ConTalk_files/figure-html/b429-3-1.png)&lt;!-- --&gt;
 ]
 ---
 
@@ -307,7 +307,8 @@ class: middle left
 ## Why Harmonies work and Clashes don't?
 
 - Nature of circular time granularities and their relationship in terms of mapping to calendars
-
+&lt;br&gt;
+&lt;br&gt;
 ## Need to formalize the theory of granularities to study their properties
 
 ---
@@ -328,42 +329,82 @@ A linear **granularity** is a mapping `\(G\)` from the integers to subsets of th
 The first condition implies that the granules in a linear granularity are non-overlapping and their index order is same as time order
 &lt;br&gt;
 &lt;br&gt;
-&lt;span style="color:Crimson"&gt;  These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicities in time
+&lt;span style="color:Crimson"&gt;  These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicity in time
 
 ---
 
 ## &lt;span style="color:DarkBlue"&gt; Circular Time Granularities
 
-**Definition:** A **circular granularity** `\(C\)` with a modular period m is defined to be a mapping from the integers `\(Z\)` (Index Set) to `\(Z_m\)`, such that `\(C(s) = (s\mod m)\)` for `\(s \in Z\)` and `\(Z_m = \{0, 1, ..., (m-1)\}\)`, (set of integers modulo `\(m\)`).
+.pull-left[
+## Idea
+- Time domain is a mapping of row numbers to time index in a *_tsibble_*
+&lt;br&gt;
+&lt;br&gt;
+- Linear granularity is a mapping of row numbers to subsets of time domain
+&lt;br&gt;
+&lt;br&gt;
+- Circular granularity is a symbolic representation of time
+&lt;br&gt;
+&lt;br&gt;
+- To design symbolic representation based on modular arithmetic to capture relation with calendars
+]
 
-#### Illustrative calendar categorisations
-
-&lt;img src="modarith-table.png" width="70%" /&gt;
-_* `\(n_i\)` is the number of categories created by `\(C_i\)` *_
+.pull-right[
+## Definition 
+A **circular granularity** `\(C\)` with a modular period m is defined to be a mapping from the integers `\(Z\)` (Index Set) to `\(Z_m\)`, such that `\(C(s) = (s\mod m)\)` for `\(s \in Z\)` and `\(Z_m = \{0, 1, ..., (m-1)\}\)`, (set of integers modulo `\(m\)`).
+&lt;br&gt;
+&lt;br&gt;
+###  &lt;span style="color: #1B9E77"&gt; Illustrative calendar categorisations
+&lt;img src="modarith-table.png" width="90%" /&gt;
+&lt;font size="-1"&gt; `\(n_i\)` is the number of categories created by `\(C_i\)`  
+time index ~ hourly 
+]
 
 ---
 
-### &lt;span style="color:DarkBlue"&gt; Rules to control for Clashes
+### &lt;span style="color:DarkBlue"&gt; Guiding rules to control for Clashes (I)
+.pull-left[
+#### &lt;span style="color: #1B9E77"&gt; Structurally Empty Combinations (Examples: HoD and HoW)
 
-#### Structurally Empty Combinations (Examples: DoM and DoY)
-**Rule 1** 
+&lt;span style="color: Crimson"&gt; **Rule 1** 
 
-For two circular granularities `\(C_1\)` and `\(C_2\)` of the form `\(C_1 = (s \mod m_1)\)` and `\(C_2 = (s \mod m_2)\)`, choosing `\(m_1, m_2\)`&gt;1 such that `\(HCF(m_2, m_1) &gt;\)`  1 will lead to structurally empty combinations provided `\(s &gt; m_1m_2\)`. HCF refers to the largest common factor. 
+For two circular granularities `\(C_1\)` and `\(C_2\)` of the form `\(C_1 = (s \mod m_1)\)` and `\(C_2 = (s \mod m_2)\)`,  
+&lt;br&gt;
+Choosing `\(m_1, m_2 &gt;1\)` such that `\(HCF(m_2, m_1) &gt; 1\)` will lead to structurally empty combinations for `\(s &gt; m_1m_2\)`  
 
-**Rule 2**
+&lt;span style="color: Crimson"&gt; **Rule 2**
 
 For two circular granularities `\(C_3 = (\lfloor s/a\rfloor   \mod m_1)\)` and `\(C_4 = (\lfloor s/b\rfloor \mod m_2)\)` and `\(s &gt; m_1m_2\)`,
 
-Choosing `\(a, b, m_1&gt;1, m_2 &gt; 1\)` with `\(am_1,bm_2\)` being a perfect multiple of the other one will yield empty combinations provided  `\(am_1 \neq b\)` or `\(bm_2 \neq a\)`.
+Choosing `\(a, b, m_1, m_2 &gt; 1\)` with `\(am_1,bm_2\)` being a perfect multiple of the other one will yield empty combinations provided  `\(am_1 \neq b\)` or `\(bm_2 \neq a\)`.
 
+&lt;font size="-1"&gt; [_*HCF refers to the largest common factor*_] 
+]
+.pull-right[
+## Explanation of Rule 1
+&lt;img src="Rule1.png" width="100%" /&gt;
 
-#### Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
+#### HoD `\(= s \mod 24\)` ---&gt;  `\(m_1 = 24\)`  
+#### HoW `\(= s \mod 168\)` ---&gt;  `\(m_2= 24*7\)`  
+#### `\(HCF(m_2, m_1) &gt;  1\)`  
+### &lt;font size="+2"&gt; &lt;span style="color: Crimson"&gt; (HoD, HoW) ---&gt; Clash
 
-- T observations for a linear bottom granularity
-- C1 and C2 are two circular granularities with modular period `\(m_1\)` and `\(m_2\)` 
+]
 
-Then `\(T \ge m_1m_2k\)`, k&gt;30 (approx) for density estimates
 ---
+
+## &lt;span style="color:DarkBlue"&gt; Guiding rules to control for Clashes (II)
+
+### &lt;span style="color: #1B9E77"&gt;  Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
+
+For two circular granularities `\(C_1\)` and `\(C_2\)` with modular period `\(m_1\)` and `\(m_2\)`, 
+
+choosing `\(m_1, m_2 &gt;1\)`, such that  `\(m_1m_2 &lt; T/k\)` will lead to non-functional Empty combinations, where k&gt;30 (approx) for density estimates and T is the number of observations for given time index.
+
+#### WIP (Finding comprehensive list of rules that objectively guide us to choose Harmonies)
+
+---
+
 
 
 .pull-left[
@@ -532,7 +573,7 @@ Dr Peter Toscas
 
 class: middle center
 
-## &lt;span style="color:DarkBlue"&gt; Questions?
+# &lt;span style="color:DarkBlue"&gt; Questions?
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
