@@ -114,9 +114,9 @@ Univariate
 ---
 class: middle left
 
-## <span style="color:DarkBlue">  Research Aim
+# <span style="color:DarkBlue">  Research Aim
 
-### Provide a platform to <span style="color:Crimson"> systematically <span style="color:Black"> explore multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> probability distributions <span style="color:Black">
+## <span style="color:Black"> Provide a platform to <span style="color:Crimson"> systematically explore <span style="color:Black">  multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> visualizing probability distributions <span style="color:Black">
 
 ---
 ## <span style="color:DarkBlue">  What is Exploratory Data Analysis?
