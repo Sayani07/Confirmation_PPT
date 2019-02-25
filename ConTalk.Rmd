@@ -169,22 +169,22 @@ class: middle center
 
 ---
 
-## <span style="color:DarkBlue"> Deconstructing temporal data - Granularities
+# <span style="color:DarkBlue"> Deconstructing temporal data - Granularities
 
 .pull-left[
-#### Arrangement of time
+## Arrangement of time
 
-a) Linear  
-b) Cyclic
+ a) Linear  
+ b) Cyclic
 <br>
 <br>
-<span style="color:#c33c3c"> **Granularities** <span style="color:Black">  Abstractions of time based on Calendar
+- <span style="color:#c33c3c"> **Granularities** : <span style="color:Black">  Abstractions of time based on Calendar
 <br>
 <br>
-<span style="color:#c33c3c"> **Linear granularities** <span style="color:Black"> : Days, weeks, months, years
+- <span style="color:#c33c3c"> **Linear granularities** : <span style="color:Black"> Days, weeks, months, years
 <br>
 <br>
-<span style="color:#c33c3c"> **Circular granularities** <span style="color:Black"> : DoW, MoY or HoD and nearly circular granularities like DoM or WoM   
+- <span style="color:#c33c3c"> **Circular granularities** : <span style="color:Black"> : DoW, MoY or HoD and nearly circular granularities like DoM or WoM   
 ]
 
 .pull-right[
