@@ -525,7 +525,7 @@ time index ~ hourly ]
 
 ---
 
-### <span style="color:DarkBlue"> Guiding rules to control for Clashes
+### <span style="color:DarkBlue"> Guiding rules to control for Clashes (I)
 .pull-left[
 #### <span style="color: #1B9E77"> Structurally Empty Combinations (Examples: HoD and HoW)
 
@@ -558,13 +558,16 @@ knitr::include_graphics("Rule1.png")
 
 ---
 
+## <span style="color:DarkBlue"> Guiding rules to control for Clashes (II)
 
-#### Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
+### <span style="color: #1B9E77">  Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
 
-- T observations for a linear bottom granularity
-- C1 and C2 are two circular granularities with modular period $m_1$ and $m_2$ 
+For two circular granularities $C_1$ and $C_2$ with modular period $m_1$ and $m_2$, 
 
-Then $T \ge m_1m_2k$, k>30 (approx) for density estimates
+choosing $m_1, m_2 >1$, such that  $m_1m_2 < T/k$ will lead to non-functional Empty combinations, where k>30 (approx) for density estimates and T is the number of observations for given time index.
+
+#### WIP (Finding comprehensive list of rules that objectively guide us to choose Harmonies)
+
 ---
 
 
