@@ -525,18 +525,38 @@ time index ~ hourly ]
 
 ---
 
-### <span style="color:DarkBlue"> Rules to control for Clashes
+### <span style="color:DarkBlue"> Guiding rules to control for Clashes
+.pull-left[
+#### <span style="color: #1B9E77"> Structurally Empty Combinations (Examples: HoD and HoW)
 
-#### Structurally Empty Combinations (Examples: DoM and DoY)
-**Rule 1** 
+<span style="color: Crimson"> **Rule 1** 
 
-For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$, choosing $m_1, m_2$>1 such that $HCF(m_2, m_1) >$  1 will lead to structurally empty combinations provided $s > m_1m_2$. HCF refers to the largest common factor. 
+For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$,  
+<br>
+Choosing $m_1, m_2 >1$ such that $HCF(m_2, m_1) > 1$ will lead to structurally empty combinations for $s > m_1m_2$  
 
-**Rule 2**
+<span style="color: Crimson"> **Rule 2**
 
 For two circular granularities $C_3 = (\lfloor s/a\rfloor   \mod m_1)$ and $C_4 = (\lfloor s/b\rfloor \mod m_2)$ and $s > m_1m_2$,
 
-Choosing $a, b, m_1>1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the other one will yield empty combinations provided  $am_1 \neq b$ or $bm_2 \neq a$.
+Choosing $a, b, m_1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the other one will yield empty combinations provided  $am_1 \neq b$ or $bm_2 \neq a$.
+
+<font size="-1"> [_*HCF refers to the largest common factor*_] 
+]
+.pull-right[
+## Explanation of Rule 1
+```{r Rule1, echo=FALSE, out.width="100%"}
+knitr::include_graphics("Rule1.png")
+```
+
+#### HoD $= s \mod 24$ --->  $m_1 = 24$  
+#### HoW $= s \mod `r 24*7`$ --->  $m_2= 24*7$  
+#### $HCF(m_2, m_1) >  1$  
+### <font size="+2"> <span style="color: Crimson"> (HoD, HoW) ---> Clash
+
+]
+
+---
 
 
 #### Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
@@ -546,6 +566,7 @@ Choosing $a, b, m_1>1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the
 
 Then $T \ge m_1m_2k$, k>30 (approx) for density estimates
 ---
+
 
 
 .pull-left[
