@@ -236,7 +236,7 @@ SU_uniform_mutate <-Units_Data  %>% mutate(date = date(`Timestamp UTC`),wday = w
                        month = month(date, label = TRUE, abbr = TRUE),
                        year = year(date),
                        hour = hour(`Timestamp UTC`),
-                       work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), 1, 0), work = ifelse(date %in% vic_holidays$date, 0, 1))
+                       work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), "Yes", "No"))
                        
                        
 p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
@@ -303,11 +303,11 @@ p4
 
 ---
 
-## <span style="color:DarkBlue">  Across HoD and WD/NWD
+## <span style="color:DarkBlue">  Across HoD and Work-Day/Non-Work-Day
 
 ```{r okaygraph, fig.height=6, fig.width=4,echo=FALSE}
  s1 <- SU_uniform_mutate %>%
-  mutate(work = ifelse(date %in% vic_holidays$date, 0, work))
+  mutate(work = ifelse(date %in% vic_holidays$date, "No", work))
 
  
 b1_Quantile <- s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>% 
@@ -317,7 +317,7 @@ b1_Quantile <- s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>%
                              Value = quantile(x, probs = .x,na.rm=TRUE)))
    })
  
-p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")+ theme(legend.position = "none",strip.text = element_text(size = 10, margin = margin())) + ggtitle("B1 05")
+p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")+ theme(legend.position = "none",strip.text = element_text(size = 10, margin = margin()))+ coord_cartesian(ylim = c(0,0.75)) + ggtitle("B1 05")
 
 b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>% 
    do({x <- .$Value
@@ -326,7 +326,7 @@ b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>%
                              Value = quantile(x, probs = .x,na.rm=TRUE)))
    })
  
-p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")+ theme(legend.position = "none",strip.text = element_text(size = 10, margin = margin())) +  ggtitle("B4 29")
+p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Total kwh") +  xlab("Hours")+ theme(legend.position = "none",strip.text = element_text(size = 10, margin = margin())) + coord_cartesian(ylim = c(0,0.75)) +  ggtitle("B4 29")
 
 # grid.arrange(p5, p6,  ncol = 2)
 ```
