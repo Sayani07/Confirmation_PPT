@@ -2,3 +2,17 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
+ConTalk_cache/html/
+ConTalk_files/DiagrammeR-binding-1.0.0/
+ConTalk_files/DiagrammeR-styles-0.2/
+ConTalk_files/chromatography-0.1/
+ConTalk_files/d3-3.3.8/
+ConTalk_files/dagre-0.4.0/
+ConTalk_files/htmlwidgets-1.2/
+ConTalk_files/kePrint-0.0.1/
+ConTalk_files/mermaid-0.3.0/
+Confirmation_PPT.Rproj
+DHResidence.rds
+cache/
+figure/
