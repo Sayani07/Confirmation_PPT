@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 # <span style="color:DarkBlue"> Agenda
 
 - Motivation
-- Research Aim
+- Research aim
 - What is EDA? How it can help?
 - Research objectives
   - Visualizing probability distributions on deconstructed time
@@ -114,7 +114,7 @@ Univariate
 ---
 class: middle left
 
-# <span style="color:DarkBlue">  Research Aim
+# <span style="color:DarkBlue">  Research aim
 
 ## <span style="color:Black"> Provide a platform to <span style="color:Crimson"> systematically explore <span style="color:Black">  multiple perspectives of <span style="color:Crimson"> spatio-temporal data <span style="color:Black"> across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through <span style="color:Crimson"> visualizing probability distributions <span style="color:Black">
 
@@ -245,12 +245,12 @@ p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
 
 ```
 .pull-left[
-```{r, echo=FALSE}
+```{r b105-1,echo=FALSE}
  p1
 ```
 ]
 .pull.right[
-```{r, echo=FALSE}
+```{r b429-1, echo=FALSE}
 p2
 ```
 ]
@@ -278,13 +278,13 @@ p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
 
 ```
 .pull-left[
-```{r ,echo=FALSE}
+```{r b105-2,echo=FALSE}
  p3
 ```
 ]
 
 .pull.right[
-```{r ,echo=FALSE}
+```{r b429-2,echo=FALSE}
 p4
 ```
 ]
@@ -322,12 +322,12 @@ p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_
 # grid.arrange(p5, p6,  ncol = 2)
 ```
 .pull-left[
-```{r, echo=FALSE}
+```{r b105-3, echo=FALSE}
  p5
 ```
 ]
 .pull.right[
-```{r, echo=FALSE}
+```{r b429-3, echo=FALSE}
 p6
 ```
 ]
@@ -468,7 +468,8 @@ class: middle left
 ## Why Harmonies work and Clashes don't?
 
 - Nature of circular time granularities and their relationship in terms of mapping to calendars
-
+<br>
+<br>
 ## Need to formalize the theory of granularities to study their properties
 
 ---
@@ -495,14 +496,32 @@ The first condition implies that the granules in a linear granularity are non-ov
 
 ## <span style="color:DarkBlue"> Circular Time Granularities
 
-**Definition:** A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
+.pull-left[
+## Idea
+- Time domain is a mapping of row numbers to time index in a *_tsibble_*
+<br>
+<br>
+- Linear granularity is a mapping of row numbers to subsets of time domain
+<br>
+<br>
+- Circular granularity is a symbolic representation of time
+<br>
+<br>
+- To design symbolic representation based on modular arithmetic to capture relation with calendars
+]
 
-#### Illustrative calendar categorisations
-
-```{r Modarith, echo=FALSE, out.width="70%"}
+.pull-right[
+## Definition 
+A **circular granularity** $C$ with a modular period m is defined to be a mapping from the integers $Z$ (Index Set) to $Z_m$, such that $C(s) = (s\mod m)$ for $s \in Z$ and $Z_m = \{0, 1, ..., (m-1)\}$, (set of integers modulo $m$).
+<br>
+<br>
+###  <span style="color: #1B9E77"> Illustrative calendar categorisations
+```{r Modarith, echo=FALSE, out.width="100%"}
 knitr::include_graphics("modarith-table.png")
 ```
-_* $n_i$ is the number of categories created by $C_i$ *_
+.tiny[ $n_i$ is the number of categories created by $C_i$  
+time index ~ hourly ]
+]
 
 ---
 
@@ -697,4 +716,4 @@ Dr Peter Toscas
 
 class: middle center
 
-## <span style="color:DarkBlue"> Questions?
+# <span style="color:DarkBlue"> Questions?
