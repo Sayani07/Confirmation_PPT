@@ -244,14 +244,16 @@ p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ggtitle("B1 05")
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + 
+    scale_y_continuous(breaks = seq(0,1.5,0.3)) + ggtitle("B1 05")
    
 p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   group_by(date) %>%
   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
   mutate(wday = wday(date, label = TRUE, abbr = TRUE,
                      week_start = 1)) %>%
-  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ggtitle("B4 29")
+  ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() +
+    scale_y_continuous(breaks = seq(0,1.5,0.3)) + ggtitle("B4 29")
 
 ```
 .pull-left[
@@ -267,7 +269,7 @@ p2
 ---
 ##<span style="color:DarkBlue">   Across HoD and DoW
 
-```{r okaygraph2, fig.height=6, fig.width=4,echo=FALSE}
+```{r okaygraph2,echo=FALSE}
 p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
   group_by(wday,hour) %>%
   ggplot(aes(x=as.factor(hour), y=Value,group=hour)) + geom_boxplot() +
@@ -286,12 +288,13 @@ p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
 
 ```
 .pull-left[
-```{r, echo=FALSE}
+```{r ,echo=FALSE}
  p3
 ```
 ]
+
 .pull.right[
-```{r, echo=FALSE}
+```{r ,echo=FALSE}
 p4
 ```
 ]

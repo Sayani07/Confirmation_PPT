@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visualisation and analysis of probability distributions of variables defined on spatio-temporal granularities</title>
+    <meta charset="utf-8">
+    <meta name="author" content="  Sayani Gupta" />
+    <meta name="date" content="2019-02-28" />
+    <link href="ConTalk_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="remark.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visualisation and analysis of probability distributions of variables defined on spatio-temporal granularities
+### <br> Sayani Gupta <br>
+### February 28, 2019 <br>
+
+---
+
+
+
+
+# &lt;span style="color:DarkBlue"&gt; Agenda
+
+- Motivation
+
+- Research Aim
+
+- What is EDA? How it can help?
+
+- Research Objectives
+
+  - Visualizing probability distributions on deconstructed time
+  
+  - Spatio-temporal granularities and probability distribution plots
+  
+  - Clustering algorithms for grouping probability distributions on spatio-temporal granularities
+  
+
+- Timeline
+
+- Acknowledgements
+
+---
+
+# &lt;span style="color:DarkBlue"&gt; Motivation
+
+## Electricity smart meter technology 
+
+Smart meters record electricity usage (per kWh) every 30 minutes and send this information to the electricity retailer for billing
+
+.pull-left[
+
+**Consumers** can save considerable amount on their electricity bill by 
+&lt;br&gt;
+- Switching on their hot water heater or do laundry when energy is cheaper, or when their solar system is generating surplus energy 
+
+- Switching off appliances during peak demands
+
+- Check usage and compare with similar homes 
+
+&lt;!-- All homes and businesses in Victoria are already fitted with smart meters --&gt;
+
+&lt;!-- Both consumers and retailers benefit from greater electricity consumption information --&gt;
+]
+.pull-right[
+
+**Retailers** can reduce costs and increase efficiency
+&lt;br&gt;
+&lt;br&gt;
+- lower metering and connection fees 
+
+- Draw insights into when customer is home, or sleeping, or even what appliances they are using based on usage figures
+
+- Reward customers for mindful usage
+]
+
+---
+
+## &lt;span style="color:DarkBlue"&gt;  Data description (~ 40 billion half hourly observations)
+
+.pull-left[
+
+.large[Source]
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+.large[Frequency]
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+.large[Time Frame]
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+.large[Spread]
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Type
+]
+
+.pull-right[
+
+Data61, CSIRO
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Half hourly interval meter reading (Kwh)
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+2012 to 2014
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
+&lt;br&gt;
+&lt;br&gt;
+Spatio - Temporal Data
+]
+---
+class: middle left
+
+## &lt;span style="color:DarkBlue"&gt;  Research Aim
+
+### Provide a platform to &lt;span style="color:Crimson"&gt; systematically &lt;span style="color:Black"&gt; explore multiple perspectives of &lt;span style="color:Crimson"&gt; spatio-temporal data &lt;span style="color:Black"&gt; across deconstructed time and space to find regular patterns or anomalies, explore clusters of behaviors or summarize the behavior through &lt;span style="color:Crimson"&gt; probability distributions &lt;span style="color:Black"&gt; in an &lt;span style="color:Crimson"&gt; open source environment
+
+---
+## &lt;span style="color:DarkBlue"&gt;  What is Exploratory Data Analysis?
+
+.pull-left[
+&lt;br&gt;
+.center[
+&lt;img src="EDA.png" height=400px&gt;
+]
+]
+.pull-right[
+&lt;br&gt;
+&lt;br&gt;
+Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed
+
+### &lt;span style="color:DarkBlue"&gt; How can it help?
+
+ - Big problem broken into pieces by focusing on subsets
+&lt;br&gt;
+&lt;br&gt;
+ - Visualization of &lt;span style="color:Crimson"&gt; probability distributions &lt;span style="color:Black"&gt; at varying resolutions of time and space
+&lt;br&gt;
+&lt;br&gt;
+ - Find regular patterns/ anomalies or pockets of similar behavior
+&lt;br&gt;
+&lt;br&gt;
+ - Each visual representation poses a question
+&lt;br&gt;
+&lt;br&gt;
+ - Action: draw insights or refine question
+]
+
+---
+
+class: middle left
+
+# &lt;span style="color:DarkBlue"&gt; Research objectives
+
+### &lt;span style="color:Black"&gt; Visualization of probability distributions of deconstructed temporal data
+&lt;br&gt;
+&lt;br&gt;
+### &lt;span style="color:Black"&gt; Spatio-temporal granularities and probability distribution plots
+&lt;br&gt;
+&lt;br&gt;
+### &lt;span style="color:Black"&gt; Clustering algorithms for grouping probability distributions on spatio-temporal granularities
+&lt;br&gt;
+&lt;br&gt;
+  
+
+---
+class: middle center
+
+# &lt;span style="color:DarkBlue"&gt; Visualization of probability distributions of deconstructed temporal data
+
+---
+
+## &lt;span style="color:DarkBlue"&gt; Deconstructing temporal data - Granularities
+
+.pull-left[
+#### Arrangement of time
+
+a) Linear  
+b) Cyclic
+&lt;br&gt;
+&lt;br&gt;
+&lt;span style="color:#c33c3c"&gt; **Granularities** &lt;span style="color:Black"&gt;  Abstractions of time based on Calendar
+&lt;br&gt;
+&lt;br&gt;
+&lt;span style="color:#c33c3c"&gt; **Linear granularities** &lt;span style="color:Black"&gt; : Days, weeks, months, years
+&lt;br&gt;
+&lt;br&gt;
+&lt;span style="color:#c33c3c"&gt; **Circular granularities** &lt;span style="color:Black"&gt; : DoW, MoY or HOD and nearly circular granularities like DoM or WoM   
+]
+
+.pull-right[
+.center[&lt;img src="Linear-Circular.png" height=280px&gt;]
+]
+
+ 
+---
+class: middle left
+
+## &lt;span style="color:DarkBlue"&gt; Visualizing distributions across circular granularities (I)
+
+### Data description: 
+Source ~  Buildings and Property Division at Monash University  
+Frequency ~ 30 minutes interval smart meter data of Monash Residential Services  
+Time frame ~ April 4, 2018 to May 31, 2018  
+Spread: Two living units "B105" and "B429"  
+---
+
+# &lt;span style="color:DarkBlue"&gt; Across DoW
+
+
+.pull-left[
+![](ConTalk_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+.pull.right[
+![](ConTalk_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+---
+##&lt;span style="color:DarkBlue"&gt;   Across HoD and DoW
+
+
+.pull-left[
+![](ConTalk_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+.pull.right[
+![](ConTalk_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## &lt;span style="color:DarkBlue"&gt;  Across HoD and WD/NWD
+
+
+.pull-left[
+![](ConTalk_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+.pull.right[
+![](ConTalk_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+---
+
+class: middle left
+
+### &lt;span style="color:DarkBlue"&gt; Aggregating information across different circular granularities communicates completely different aspects of data
+
+### &lt;span style="color:DarkBlue"&gt; Exhaustive sets of visual representation required for multiple perspectives on data
+
+---
+
+class: middle left
+
+## &lt;span style="color:DarkBlue"&gt; Visualizing distributions across circular granularities (II)
+  
+.pull-left[
+
+Can combinations of these circular granularities be plotted for effective exploration?
+&lt;br&gt;
+
+a) Day-of-Year and Day-of-Month
+&lt;br&gt;
+
+b) Week-of-Month and Day-of-Month
+&lt;br&gt;
+
+c) Week-of-Month and Week-of-Year
+&lt;br&gt;
+
+
+d) Month-of-Year and Day-of-Year
+&lt;br&gt;
+
+Frequency ~ 30 minutes interval smart meter data of Victoria (aggregate)  
+Time frame ~ January, 2002 to March 1, 2015 
+
+]
+
+.pull-right[
+
+
+&lt;img src="ConTalk_files/figure-html/allFig-1.png" width="120%" height="400" style="display: block; margin: auto;" /&gt;
+]
+---
+
+
+## &lt;span style="color:DarkBlue"&gt; Harmonies and Clashes
+
+**Harmonies** Combinations of circular granularities which facilitate EDA when plotted together
+
+Examples: 
+
+- DoW and HoD
+- HoD and Working Day/ Non-Working Day
+- DoW and MoY
+
+**Clashes** Combinations of circular granularities which are conflicts in bringing out the best of EDA when plotted together
+
+Examples: 
+
+- DoY and DoM
+- MoY and DoY
+- WoM and DoM
+
+--
+
+#### &lt;span style="color:DarkBlue"&gt;  Why Harmonies work and Clashes don't?
+
+- Nature of time granularities and the way they map to calendars
+
+---
+
+&lt;!-- class: middle center --&gt;
+
+&lt;!-- # &lt;span style="color:#c33c3c"&gt; Formalizing the theory to show why some displays work while others are ineffective for exploration of data --&gt;
+
+&lt;!-- --- --&gt;
+
+#  &lt;span style="color:DarkBlue"&gt; Formalizing the theory to study properties of granularities
+---
+## &lt;span style="color:DarkBlue"&gt; Linear Time Granularities 
+
+_* By Bettini et al. "A Glossary of Time Granularity Concepts"*_
+
+**Definition:** A **time domain** is a pair `\((T; \le)\)` where `\(T\)` is a non-empty set of time instants and `\(\le\)` is a total order on `\(T\)`.
+
+**Definition:** A linear **granularity** is a mapping `\(G\)` from the integers to subsets of the time domain such that:
+
+  (C1) if `\(i &lt; j\)` and `\(G(i)\)` and `\(G(j)\)` are non-empty, then each element of `\(G(i)\)` is less than all elements of `\(G(j)\)`, and  
+  (C2) if `\(i &lt; k &lt; j\)` and `\(G(i)\)` and `\(G(j)\)` are non-empty, then `\(G(k)\)` is non-empty.  
+&lt;br&gt;
+&lt;br&gt;
+The first condition implies that the granules in a linear granularity are non-overlapping and their index order is same as time order
+&lt;br&gt;
+&lt;br&gt;
+_*These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicities in time*_
+
+---
+
+## &lt;span style="color:DarkBlue"&gt; Circular Time Granularities
+
+**Definition:** A **circular granularity** `\(C\)` with a modular period m is defined to be a mapping from the integers `\(Z\)` (Index Set) to `\(Z_m\)`, such that `\(C(s) = (s\mod m)\)` for `\(s \in Z\)` and `\(Z_m = \{0, 1, ..., (m-1)\}\)`, (set of integers modulo `\(m\)`).
+
+#### Illustrative calendar categorisations
+
+&lt;img src="modarith-table.png" width="70%" /&gt;
+_* `\(n_i\)` is the number of categories created by `\(C_i\)` *_
+
+---
+
+### &lt;span style="color:DarkBlue"&gt; Rules to control for Clashes
+
+#### Structurally Empty Combinations (Examples: DoM and DoY)
+**Rule 1** 
+
+For two circular granularities `\(C_1\)` and `\(C_2\)` of the form `\(C_1 = (s \mod m_1)\)` and `\(C_2 = (s \mod m_2)\)`, choosing `\(m_1, m_2\)`&gt;1 such that `\(HCF(m_2, m_1) &gt;\)`  1 will lead to structurally empty combinations provided `\(s &gt; m_1m_2\)`. HCF refers to the largest common factor. 
+
+**Rule 2**
+
+For two circular granularities `\(C_3 = (\lfloor s/a\rfloor   \mod m_1)\)` and `\(C_4 = (\lfloor s/b\rfloor \mod m_2)\)` and `\(s &gt; m_1m_2\)`,
+
+Choosing `\(a, b, m_1&gt;1, m_2 &gt; 1\)` with `\(am_1,bm_2\)` being a perfect multiple of the other one will yield empty combinations provided  `\(am_1 \neq b\)` or `\(bm_2 \neq a\)`.
+
+
+#### Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
+
+- T observations for a linear bottom granularity
+- C1 and C2 are two circular granularities with modular period `\(m_1\)` and `\(m_2\)` 
+
+Then `\(T \ge m_1m_2k\)`, k&gt;30 (approx) for density estimates
+---
+
+&lt;!-- # Illustration of Rules --&gt;
+
+
+&lt;!-- ```{r chck1, echo=FALSE, out.width="50%",comment=FALSE} --&gt;
+&lt;!-- # For validating rule 1, put any value of p,   --&gt;
+&lt;!-- # m1 and m2 to check if there is any expected missing combination --&gt;
+&lt;!-- rule_1 &lt;- function(p, m1, m2) --&gt;
+&lt;!-- { --&gt;
+&lt;!--   L1 &lt;-  ceiling(p) %% m1   --&gt;
+&lt;!--   L2 &lt;-  ceiling(p) %% m2 --&gt;
+&lt;!--   data_s &lt;-tibble(L1, L2, data =runif(p, min = 0, max = 1))   --&gt;
+&lt;!--   # data_s %&gt;% ggplot(aes(x = as.factor(c1), y=c2))+  --&gt;
+&lt;!--   # geom_point(alpha=0.005) --&gt;
+&lt;!--  #All possible combinations that are possible --&gt;
+&lt;!--  Allcomb &lt;- tidyr::expand(data_s, L1, L2) --&gt;
+&lt;!--  #All possible combinations that  exist --&gt;
+&lt;!--  combexist &lt;- tidyr::expand(data_s, nesting(L1, L2)) --&gt;
+&lt;!--  #All possible combination that are missing --&gt;
+&lt;!--  cmbmiss &lt;- Allcomb %&gt;% anti_join(combexist)  --&gt;
+&lt;!--  #Print missing combinations --&gt;
+&lt;!-- } --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- .left-column[ --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r rule1, echo=FALSE, eval=TRUE, results='asis',fig.cap=" (Top) of two circular granularities with different modular periods, (Bottom) Missing combinations for each case"} --&gt;
+&lt;!-- s &lt;- 1:8  --&gt;
+&lt;!-- C1 &lt;- s %% 2 --&gt;
+&lt;!-- C2 &lt;- s %% 4 --&gt;
+
+&lt;!-- C3 &lt;- s %%2 --&gt;
+&lt;!-- C4 &lt;- s %%3 --&gt;
+
+&lt;!-- library(knitr) --&gt;
+&lt;!-- library(xtable) --&gt;
+&lt;!-- knitr::kable(cbind(s, C1, C2), format = "html") --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r, echo=FALSE} --&gt;
+&lt;!-- v11 &lt;- knitr::kable(rule_1(1:8,m1 = 2, m2 = 4), format='html') --&gt;
+&lt;!-- v11 --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ] --&gt;
+&lt;!-- ] --&gt;
+
+
+
+
+
+&lt;!-- .right-column[ --&gt;
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- ```{r dataeg2, echo=FALSE, eval=TRUE, results='asis'} --&gt;
+&lt;!-- s &lt;- c(1:20)  --&gt;
+&lt;!-- C5 &lt;-   ceiling((s/3)) %% 2 --&gt;
+&lt;!-- C6 &lt;-   ceiling((s/6)) %% 3 --&gt;
+&lt;!-- C7 &lt;-   ceiling((s/3)) %% 5 --&gt;
+&lt;!-- C8 &lt;-   ceiling((s/5)) %% 3 --&gt;
+&lt;!-- C9 &lt;-   ceiling((s/2)) %% 3 --&gt;
+&lt;!-- C10 &lt;-   ceiling((s/6)) %% 4 --&gt;
+
+
+&lt;!-- knitr::kable(cbind(s, C9, C10), format = "html") %&gt;% kableExtra::kable_styling(font_size=10) --&gt;
+&lt;!-- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html")%&gt;% kableExtra::kable_styling(font_size=10) --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- .pull-right[ --&gt;
+&lt;!-- ```{r, echo=FALSE} --&gt;
+&lt;!-- v12 &lt;- knitr::kable(rule_2(s, a=2,b=6,m1=3,m2=4) , format = "html") --&gt;
+&lt;!-- v12 --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ] --&gt;
+&lt;!-- ] --&gt;
+
+## &lt;span style="color:DarkBlue"&gt; Timeline
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Description &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Product &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; February, 2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Candidature Confirmation &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Milestone &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; April, 2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Visualization of probability distributions of deconstructed temporal data &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Complete Paper &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; May, 2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tool for visualizing probability distribution of deconstructed temporal data &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R Package &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; June 2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; geom_hdr &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R Package &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; June - July, 2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Internship &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Internship &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; December, 2019 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Visualization of probability distributions of deconstructed spatio-temporal data &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Draft Paper &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; February, 2020 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tool for visualizing probability distribution of spatio temporal data &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R Package &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; February, 2020 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mid Candidature Review &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Milestone &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; April, 2020 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Visualization of probability distributions of deconstructed spatio-temporal data &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Complete Paper &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; June, 2020 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Internship &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Internship &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; July, 2020 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Attend Conference &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; IASC isi 2020 (Tentative) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; December, 2020 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Clustering of spatio-temporal data based on probability distributions &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Draft Paper &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; February, 2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Pre-Submission Review &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Milestone &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; May 2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Thesis Submission &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Milestone &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# &lt;span style="color:DarkBlue"&gt; Acknowledgements
+
+.pull-left[
+### Supervisors
+&lt;br&gt;
+Professor Rob J Hyndman  
+&lt;br&gt;
+&lt;br&gt;
+Professor Dianne Cook  
+&lt;br&gt;
+&lt;br&gt;
+Dr Peter Toscas
+&lt;br&gt;
+&lt;br&gt;
+
+### Monash University 
+### Data61, CSIRO 
+
+
+
+]
+
+.pull-right[
+### NUMBATS
+&lt;br&gt;
+&lt;br&gt;
+&lt;img src="Numbats.png" width="100%" /&gt;
+]
+
+---
+
+class: middle center
+
+## &lt;span style="color:DarkBlue"&gt; Questions?
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
