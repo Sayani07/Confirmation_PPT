@@ -546,12 +546,12 @@ Choosing $a, b, m_1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the o
 .pull-right[
 ## Explanation of Rule 1
 ```{r Rule1, echo=FALSE, out.width="100%"}
-knitr::include_graphics("Rule1.png")
+knitr::include_graphics("Rule1-improved.png")
 ```
 
-#### HoD $= s \mod 24$ --->  $m_1 = 24$  
-#### HoW $= s \mod `r 24*7`$ --->  $m_2= 24*7$  
-#### $HCF(m_2, m_1) >  1$  
+### HoD $= s \mod 24$ --->  $m_1 = 24$  
+### HoW $= s \mod `r 24*7`$ --->  $m_2= 24*7$  
+### $HCF(m_2, m_1) = 24 >  1$  
 ### <font size="+2"> <span style="color: Crimson"> (HoD, HoW) ---> Clash
 
 ]
