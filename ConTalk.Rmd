@@ -22,6 +22,8 @@ library(ggridges)
 library(viridis)
 library(forecast)
 library(lubridate)
+library(lvplot)
+library(gridExtra)
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=8))
 ```
 
@@ -433,8 +435,7 @@ VIC <- as_tibble(VIC)
 ```
 
 ```{r allFig, out.height=400,out.width="120%", echo=FALSE, eval=TRUE, fig.align="center"}
-library(lvplot)
-library(gridExtra)
+
 
 p1 <- VIC%>% filter(year %in% c(2012, 2013, 2014),Indx_Day_Month %in% c(1,15,29,31))%>% ggplot(aes(yday,OperationalLessIndustrial,group = yday)) + geom_boxplot(width=10)+ facet_wrap(~Indx_Day_Month) + ylab("Electricity Demand [KWh]") +
   xlab("Days of the Year") + scale_x_discrete(breaks=seq(0,366,60)) +theme(legend.position = "bottom",strip.text = element_text(size = 7, margin = margin())) + ggtitle("(a) Boxplot")
@@ -589,10 +590,8 @@ choosing $m_1, m_2 >1$, such that  $m_1m_2 < T/k$ will lead to non-functional Em
 #### WIP (Finding comprehensive list of rules that objectively guide us to choose Harmonies)
 
 ---
-
-
-
-.pull-left[
+.left-column[
+.center[
 <br>
 <br>
 <br>
@@ -600,127 +599,116 @@ choosing $m_1, m_2 >1$, such that  $m_1m_2 < T/k$ will lead to non-functional Em
 <br>
 <br>
 <br>
-
-# <span style="color:DarkBlue">Timeline
+#<span style="color:DarkBlue">Timeline
 ]
-.pull-right[
-.center-left[
-<table width="100%"> 
+]
+.right-column[
+<table width="120%"> 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-wavx{background-color:#ffffff;font-size:14px;font-family:"Comic Sans MS", cursive, sans-serif !important;;border-color:inherit;text-align:left}
 .tg .tg-ajri{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;color:#333333;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-giyz{background-color:#ffffff;font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;border-color:inherit;text-align:left;vertical-align:top}
 .tg .tg-253e{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-gva0{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;color:#009901;border-color:inherit;text-align:left}
-.tg .tg-u1mr{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;border-color:inherit;text-align:left}
-.tg .tg-93vd{font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;color:#333333;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-v746{background-color:#ffffff;font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;color:#333333;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-an6u{font-weight:bold;font-size:14px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;color:#009901;border-color:inherit;text-align:left}
+.tg .tg-q7c4{font-size:14px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;border-color:inherit;text-align:left}
+.tg .tg-oqet{font-size:14px;font-family:"Comic Sans MS", cursive, sans-serif !important;;background-color:#ffffff;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-v3iu{background-color:#ffffff;font-size:14px;font-family:"Comic Sans MS", cursive, sans-serif !important;;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-cjxt{background-color:#ffffff;font-size:13px;font-family:"Comic Sans MS", cursive, sans-serif !important;;color:#333333;border-color:inherit;text-align:left;vertical-align:top}
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-gva0">Year</th>
-    <th class="tg-gva0">Period</th>
-    <th class="tg-gva0">Description</th>
-    <th class="tg-gva0">Product</th>
+    <th class="tg-an6u">Year</th>
+    <th class="tg-an6u">Period</th>
+    <th class="tg-an6u">Description</th>
+    <th class="tg-an6u">Product</th>
   </tr>
   <tr>
-    <td class="tg-u1mr">2019</td>
-    <td class="tg-u1mr">February</td>
-    <td class="tg-u1mr">Candidature Confirmation</td>
-    <td class="tg-u1mr">Milestone</td>
+    <td class="tg-q7c4">2019</td>
+    <td class="tg-wavx">February</td>
+    <td class="tg-q7c4">Candidature Confirmation</td>
+    <td class="tg-wavx">Milestone</td>
   </tr>
   <tr>
-    <td class="tg-u1mr"></td>
-    <td class="tg-u1mr">April</td>
-    <td class="tg-u1mr">Research Aim-1</td>
-    <td class="tg-u1mr">Paper</td>
+    <td class="tg-q7c4"></td>
+    <td class="tg-wavx">May</td>
+    <td class="tg-q7c4">Research Aim-1</td>
+    <td class="tg-wavx">R Package</td>
   </tr>
   <tr>
-    <td class="tg-u1mr"></td>
-    <td class="tg-u1mr">May</td>
-    <td class="tg-u1mr">Research Aim-1</td>
-    <td class="tg-u1mr">R Package</td>
+    <td class="tg-q7c4"></td>
+    <td class="tg-wavx">June</td>
+    <td class="tg-q7c4">Research Aim-1</td>
+    <td class="tg-wavx">Paper</td>
   </tr>
   <tr>
-    <td class="tg-253e"></td>
-    <td class="tg-253e">June</td>
-    <td class="tg-253e">geom_hdr</td>
-    <td class="tg-253e">R Package</td>
+    <td class="tg-oqet"></td>
+    <td class="tg-v3iu">June - July</td>
+    <td class="tg-oqet">Internship (Tentative)</td>
+    <td class="tg-v3iu">Internship</td>
   </tr>
   <tr>
-    <td class="tg-253e"></td>
-    <td class="tg-253e">June - July</td>
-    <td class="tg-253e">Internship (Tentative)</td>
-    <td class="tg-253e">Internship</td>
+    <td class="tg-oqet"></td>
+    <td class="tg-v3iu">December</td>
+    <td class="tg-oqet">Research Aim - 2</td>
+    <td class="tg-v3iu">Draft Paper</td>
   </tr>
   <tr>
-    <td class="tg-253e"></td>
-    <td class="tg-253e">December</td>
-    <td class="tg-253e">Research Aim-2</td>
-    <td class="tg-253e">Draft Paper</td>
+    <td class="tg-oqet" rowspan="6">2020</td>
+    <td class="tg-v3iu">February</td>
+    <td class="tg-oqet">Mid-Candidature Review</td>
+    <td class="tg-v3iu">Milestone</td>
   </tr>
   <tr>
-    <td class="tg-253e">2020</td>
-    <td class="tg-253e">February</td>
-    <td class="tg-253e">Mid-Candidature Review</td>
-    <td class="tg-253e">Milestone</td>
+    <td class="tg-v3iu">April </td>
+    <td class="tg-oqet">Research Aim - 2</td>
+    <td class="tg-v3iu">R Package</td>
   </tr>
   <tr>
-    <td class="tg-253e"></td>
-    <td class="tg-253e">April </td>
+    <td class="tg-giyz">May</td>
     <td class="tg-253e">Research Aim - 2</td>
-    <td class="tg-253e">Paper</td>
+    <td class="tg-giyz">Paper</td>
   </tr>
   <tr>
-    <td class="tg-253e"></td>
-    <td class="tg-253e">May</td>
-    <td class="tg-253e">Research Aim - 2</td>
-    <td class="tg-253e">R Package</td>
-  </tr>
-  <tr>
-    <td class="tg-253e"></td>
-    <td class="tg-253e">June</td>
+    <td class="tg-giyz">June</td>
     <td class="tg-253e">Research Internship</td>
-    <td class="tg-253e">Internship</td>
+    <td class="tg-giyz">Internship</td>
   </tr>
   <tr>
-    <td class="tg-253e"></td>
-    <td class="tg-253e">July</td>
-    <td class="tg-253e">IASC isi 2020</td>
-    <td class="tg-253e">Conference</td>
+    <td class="tg-giyz">July</td>
+    <td class="tg-253e">Compstat 2020<br></td>
+    <td class="tg-giyz">Conference</td>
   </tr>
   <tr>
-    <td class="tg-ajri"></td>
-    <td class="tg-ajri">December</td>
+    <td class="tg-cjxt">December</td>
     <td class="tg-ajri">Research Aim-3</td>
-    <td class="tg-ajri">Draft Paper</td>
+    <td class="tg-cjxt">Draft Paper</td>
   </tr>
   <tr>
-    <td class="tg-ajri">2021</td>
-    <td class="tg-ajri">February</td>
+    <td class="tg-ajri" rowspan="4">2021</td>
+    <td class="tg-cjxt">February</td>
     <td class="tg-ajri">Pre-submission Review</td>
-    <td class="tg-ajri">Milestone</td>
+    <td class="tg-cjxt">Milestone</td>
   </tr>
   <tr>
-    <td class="tg-ajri"></td>
-    <td class="tg-ajri">March</td>
+    <td class="tg-cjxt">March</td>
     <td class="tg-ajri">Research Aim - 3</td>
-    <td class="tg-ajri">Paper</td>
+    <td class="tg-cjxt">R Package</td>
   </tr>
   <tr>
-    <td class="tg-ajri"></td>
-    <td class="tg-ajri">April</td>
+    <td class="tg-cjxt">April</td>
     <td class="tg-ajri">Research Aim - 3</td>
-    <td class="tg-ajri">R Package</td>
+    <td class="tg-cjxt">Paper</td>
   </tr>
   <tr>
-    <td class="tg-ajri"></td>
-    <td class="tg-ajri">May</td>
+    <td class="tg-cjxt">May</td>
     <td class="tg-ajri">Thesis Submission</td>
-    <td class="tg-ajri">Milestone</td>
+    <td class="tg-cjxt">Milestone</td>
   </tr>
 </table>
-]
 ]
 
 ---
