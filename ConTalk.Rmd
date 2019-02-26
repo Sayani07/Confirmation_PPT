@@ -186,7 +186,15 @@ class: middle center
 ]
 
 .pull-right[
-.center[<img src="Linear-Circular.png" height=280px>]
+```{r linear-cyclic, echo=FALSE, fig.height=7, fig.width = 5}
+library(fpp2)
+q1 <- autoplot(hsales) + xlab("Year") + ggtitle(" a) Linear arrangement of time") + ylab("")
+q2 <- ggseasonplot(hsales, polar=TRUE,year.labels = FALSE) +
+  ggtitle(" b) Cyclic arrangement of time")
+
+grid.arrange(q1,q2, nrow = 2)
+
+```
 ]
 
  
