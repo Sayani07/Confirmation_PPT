@@ -498,28 +498,44 @@ class: middle left
 ## Need to formalize the theory of granularities to study their properties
 
 ---
-# <span style="color:DarkBlue"> Linear Time Granularities 
+
+.pull-left[
+# <span style="color:DarkBlue"> Linear Time Granularities <br>
 
 _* "A Glossary of Time Granularity Concepts"* by Bettini et al. _
+<br>
+<br>
 
-### Definition: Time Domain
+```{r linear-time, echo=FALSE, out.width="100%",out.height=240}
+knitr::include_graphics("linear-time.png")
+```
+<br>
+<br>
+<br>
+<br>
+
+<span style="color:Crimson">  These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicity in time
+
+]
+.pull-right[### Definition: Time Domain
 A **time domain** is a pair $(T; \le)$ where $T$ is a non-empty set of time instants and $\le$ is a total order on $T$.
 
 ### Definition: Linear Granularity
 A linear **granularity** is a mapping $G$ from the integers to subsets of the time domain such that:
 
   (C1) if $i < j$ and $G(i)$ and $G(j)$ are non-empty, then each element of $G(i)$ is less than all elements of $G(j)$, and  
+  <br>
   (C2) if $i < k < j$ and $G(i)$ and $G(j)$ are non-empty, then $G(k)$ is non-empty.  
 <br>
 <br>
 The first condition implies that the granules in a linear granularity are non-overlapping and their index order is same as time order
 <br>
 <br>
-<span style="color:Crimson">  These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicity in time
+]
 
 ---
 
-## <span style="color:DarkBlue"> Circular Time Granularities
+# <span style="color:DarkBlue"> Circular Time Granularities
 
 .pull-left[
 ## Idea
