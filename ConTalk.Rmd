@@ -443,14 +443,11 @@ _* "A Glossary of Time Granularity Concepts"* by Bettini et al. _
 <br>
 <br>
 
-```{r linear-time, echo=FALSE, out.width="100%",out.height=240}
-knitr::include_graphics("linear-time.png")
+```{r linear-time, echo=FALSE, out.width="100%",out.height=290}
+knitr::include_graphics("linear-time-2.png")
 ```
 <br>
 <br>
-<br>
-<br>
-
 <span style="color:Crimson">  These definitions for linear granularities are inadequate for conceptualizing circular granularities since the linearity imposes a restriction on reflecting periodicity in time
 
 ]
