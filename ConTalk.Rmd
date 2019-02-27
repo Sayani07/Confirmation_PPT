@@ -1,8 +1,8 @@
 ---
 title: "Visualisation and analysis of probability distributions of variables defined on  spatio-temporal granularities"
 type: "meetup"
-author: "<br> Sayani Gupta <br>"
-date: "February 28, 2019 <br>"
+author: "<br> Sayani Gupta <br> <br> Supervisors: &nbsp; Prof. Rob J Hyndman &nbsp; &nbsp; Prof. Dianne Cook &nbsp; &nbsp; Dr. Peter Toscas"
+date: <font size="5"> Department of Econometrics and Business Statistics <br> February 28, 2019
 output:
   xaringan::moon_reader:
     css: ["default", "data_viz_theme.css"]
