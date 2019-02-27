@@ -490,11 +490,25 @@ Examples:
 class: middle left 
 # <span style="color:DarkBlue"> Interpretations
 
+## Calendar Categorisation
+.pull-left[
+ Categories of $C_1$: {A, B}  
+ Categories of $C_2$: {X, Y, Z}  
+ Combinations: {A, X}, {A, Y}, {A, Z}  
+               {B, X}, {B, Y}, {B, Z}
+]
+.pull-right[
+## Missing Combinations of circular granularities
+- Structural (Examples: HoD and HoW)
+- Non-functional (Examples: Working/Non-working day and HoD)
+ ]
+
 ## Why Harmonies work and Clashes don't?
 
 - Nature of circular time granularities and their relationship in terms of mapping to calendars
 <br>
-<br>
+
+
 ## Need to formalize the theory of granularities to study their properties
 
 ---
