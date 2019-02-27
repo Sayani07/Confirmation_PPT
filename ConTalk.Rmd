@@ -215,9 +215,10 @@ Residential Services
 ---
 class: top center
 
-# <span style="color:DarkBlue"> Across <span style="color:Crimson">Day-of-Week
 
-```{r okaygraph1, fig.height=6, fig.width=4,echo=FALSE}
+# <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
+<font size="-1"> **Frequency** ~ 30 minutes interval smart meter data of Monash Residential Services, <font size="-1"> **Time frame** ~ April 4, 2018 to May 31, 2018, <font size="-1"> **Spread** ~ 73 living units
+```{r okaygraph1,fig.height=6, fig.width=4, echo=FALSE}
 # Data_Halls_Residence <- read_csv("NRAS Treatment Group Data Export_2018-05-31-15-57-41.csv")
 # 
 # write_rds(Data_Halls_Residence,"DHResidence.rds")
@@ -241,43 +242,16 @@ SU_uniform_mutate <-selected_units  %>% mutate(date = date(`Timestamp UTC`),wday
                        work = ifelse(wday %in% c("Mon", "Tue", "Wed", "Thu", "Fri"), "Yes", "No"))
                        
                        
-p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
-  #dplyr::group_by(date,wday) %>%
-  #summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
-  ggplot(aes(x=wday, y=Value)) + geom_boxplot() + ylab("Energy consumption in KwH ") +  xlab("Day-of-Week") 
-    # coord_cartesian(ylim = c(0,0.6))  
-    # + ggtitle("B1 05")
-   
+# p1 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
+#   dplyr::group_by(date,wday) %>%
+#   summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
+#   ggplot(aes(x=wday, y=dkwh)) + geom_boxplot() + ylab("Energy consumption in KwH ") +  xlab("Day-of-Week") 
+    
 p2 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
-  #group_by(date,wday) %>%
-  #summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
-  ggplot(aes(x=wday, y=Value)) + geom_boxplot() + ylab("Energy consumption in KwH ") + xlab("Day-of-Week") +
-    coord_cartesian(ylim = c(0,0.6)) + ggtitle("B4 29")
-
-```
-.pull-left[
-```{r b105-1,echo=FALSE}
- p1
-```
-]
-.pull.right[
-```{r b429-1, echo=FALSE}
-p2
-```
-]
----
-class: top center
-
-##<span style="color:DarkBlue"> Across  <span style="color:Crimson"> Day-of-Week <span style="color:DarkBlue"> and <span style="color:Crimson"> Hour-of-Day 
-
-```{r okaygraph2,echo=FALSE}
-p3 = SU_uniform_mutate %>% filter(Source=="B1 05") %>%
-  group_by(wday,hour) %>% filter(wday %in% c("Tue","Wed","Thu","Fri","Sat","Sun")) %>% 
-  ggplot(aes(x=as.factor(hour), y=Value,group=hour)) + geom_boxplot() +
-  facet_wrap(~wday) + 
-  ylab("Daily Consumpttion in KwH") +
-  xlab("Hour-of-Day")+ 
-    coord_cartesian(xlim= c(0,23), ylim = c(0,0.75))+  scale_x_discrete(breaks=c(0,5,10,15,20))+  ggtitle("B1 05")
+  # group_by(date,wday) %>%
+  # summarise(dkwh = sum(Value, na.rm=TRUE)) %>%
+  ggplot(aes(x=wday, y=Value)) + geom_boxplot() + ylab("Energy consumption in KwH ") + xlab("Day-of-Week") + coord_cartesian(ylim = c(0,0.6))+ ggtitle("Across Day-of-Week") + theme(
+plot.title = element_text(color="red", size=14, face="bold.italic"),axis.title=element_text(size=14,face="bold"))
 
 p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   group_by(wday,hour) %>% filter(wday %in% c("Tue","Wed","Thu","Fri","Sat","Sun")) %>% 
@@ -285,58 +259,12 @@ p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   facet_wrap(~wday) + 
   ylab("Daily Consumpttion in KwH") +
   xlab("Hour-of-Day") +  
-    coord_cartesian(xlim= c(0,23), ylim = c(0,0.75))+ scale_x_discrete(breaks=c(0,5,10,15,20))+  ggtitle("B4 29")
+    coord_cartesian(xlim= c(0,23), ylim = c(0,0.75))+ scale_x_discrete(breaks=c(0,5,10,15,20))+  ggtitle("B4 29")+ ggtitle("Across Day-of-Week and Hour-of-Day") + theme(
+plot.title = element_text(color="red", size=14, face="bold.italic"),axis.title=element_text(size=14,face="bold"))
 
-```
-.pull-left[
-```{r b105-2,echo=FALSE}
- p3
-```
-]
-
-.pull.right[
-```{r b429-2,echo=FALSE}
-p4
-```
-]
-
-
----
-class: top center
-
-## <span style="color:DarkBlue">  Across <span style="color:Crimson">Hour-of-Day <span style="color:DarkBlue"> and <span style="color:Crimson">Work-Day/Non-Work-Day
-
-```{r okaygraph, fig.height=6, fig.width=4,echo=FALSE}
- s1 <- SU_uniform_mutate %>%
+s1 <- SU_uniform_mutate %>%
   mutate(work = ifelse(date %in% vic_holidays$date, "No", work))
 
-# 
-# b1_Quantile <- s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>%
-#   summarise(
-#     Quantile = list(quantile(Value, c(0.1, 0.9, 0.1), na.rm = TRUE)),
-#     Label = list(c(0.1, 0.9, 0.1))
-#   ) %>%
-#   as_tibble() %>%
-#   unnest() %>%
-#   as_tsibble(key = id(work, hour, Label), index = `Timestamp UTC`)
-# 
-# s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>%
-#   summarise(
-#     Quantile = median(Value)
-#   ) %>%
-#   ungroup() %>%
-#   unnest(key = id(Label))
-
-
-b1_Quantile <- s1 %>% filter(Source=="B1 05") %>% group_by(work,hour) %>% 
-   do({x <- .$Value
-   map_dfr(.x = seq(0.1,0.9,0.1),
-           .f = ~ tibble(Quantile = .x,
-                             Value = quantile(x, probs = .x,na.rm=TRUE)))
-   })
-# checking error
-p5 <- b1_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~ work, labeller = "label_both") + 
-ylab("Daily Consumption in KwH") +  xlab("Hour-of-Day")+ coord_cartesian(ylim = c(0,0.75)) + ggtitle("B1 05")
 
 b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>% 
    do({x <- .$Value
@@ -344,23 +272,31 @@ b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>%
            .f = ~ tibble(Quantile = .x,
                              Value = quantile(x, probs = .x,na.rm=TRUE)))
    })
- 
-p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Daily Consumpttion in KwH") +  xlab("Hour-of-Day") + coord_cartesian(ylim = c(0,0.75)) +  ggtitle("B4 29")
 
-# grid.arrange(p5, p6,  ncol = 2)
+p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Daily Consumpttion in KwH") +  xlab("Hour-of-Day") + coord_cartesian(ylim = c(0,0.75)) +  ggtitle("B4 29") + ggtitle("Across Hour-of-Day and Work-Day/Non-Work-Day") + theme(
+plot.title = element_text(color="red", size=14, face="bold.italic"),axis.title=element_text(size=14,face="bold"))
+
+# grid.arrange(p2,p4,p6, ncol=3, widths = 4, heights = 6)
 ```
-.pull-left[
-```{r b105-3, echo=FALSE}
- p5
+
+.left-column[
+```{r b105-11,fig.height=6, fig.width=4,echo=FALSE}
+ p2
 ```
 ]
-.pull.right[
-```{r b429-3, echo=FALSE}
+.right-column[
+.pull-left[
+```{r b429-12,fig.height=4, fig.width=6, echo=FALSE}
+p4
+```
+]
+.pull-right[
+```{r b429-13,fig.height=4, fig.width=6, echo=FALSE}
 p6
 ```
 ]
+]
 ---
-
 class: middle left
 
 # <span style="color:DarkBlue"> Interpretations
