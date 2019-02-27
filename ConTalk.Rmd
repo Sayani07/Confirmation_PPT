@@ -206,7 +206,7 @@ class: top center
 
 
 # <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
-<font size="3"> **Source** ~ Buildings and Property Division at Monash University  **Frequency** ~ 30 minutes interval smart meter data of Monash Residential Services, <font size="3"> **Time frame** ~ April 4, 2018 to May 31, 2018, <font size="-1"> **Spread** ~ 73 living units
+<font size="3"> **Source** ~ Buildings and Property Division at Monash University  **Frequency** ~ 30 minutes interval smart meter data of Monash Residential Services, <font size="3"> **Time frame** ~ April 4, 2018 to May 31, 2018, <font size="3"> **Spread** ~ 73 living units
 ```{r okaygraph1,fig.height=6, fig.width=4, echo=FALSE}
 # Data_Halls_Residence <- read_csv("NRAS Treatment Group Data Export_2018-05-31-15-57-41.csv")
 # 
