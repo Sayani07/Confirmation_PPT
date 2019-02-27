@@ -495,8 +495,7 @@ A **circular granularity** $C$ with a modular period m is defined to be a mappin
 ```{r Modarith, echo=FALSE, out.width="90%"}
 knitr::include_graphics("modarith-table.png")
 ```
-<font size="-1"> $n_i$ is the number of categories created by $C_i$  
-time index ~ hourly 
+<font size="-1"> $n_i$ is the number of categories created by $C_i$, &nbsp; time index ~ hourly 
 ]
 
 ---
@@ -507,13 +506,13 @@ time index ~ hourly
 
 <span style="color: Crimson"> **Rule 1** 
 
-For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$,  
-<br>
+For two circular granularities $C_1$ and $C_2$ of the form $C_1 = (s \mod m_1)$ and $C_2 = (s \mod m_2)$ ---->
+
 Choosing $m_1, m_2 >1$ such that $HCF(m_2, m_1) > 1$ will lead to structurally empty combinations for $s > m_1m_2$  
 
 <span style="color: Crimson"> **Rule 2**
 
-For two circular granularities $C_3 = (\lfloor s/a\rfloor   \mod m_1)$ and $C_4 = (\lfloor s/b\rfloor \mod m_2)$ and $s > m_1m_2$,
+For two circular granularities $C_3 = (\lfloor s/a\rfloor   \mod m_1)$ and $C_4 = (\lfloor s/b\rfloor \mod m_2)$ and $s > m_1m_2$ ---->
 
 Choosing $a, b, m_1, m_2 > 1$ with $am_1,bm_2$ being a perfect multiple of the other one will yield empty combinations provided  $am_1 \neq b$ or $bm_2 \neq a$.
 
@@ -549,9 +548,9 @@ knitr::include_graphics("Rule2-miss.png")
 ]
 .pull-right[## <span style="color: #1B9E77">  Non-functional Empty Combinations (Examples: Working/Non-working day and HoD)
 
-For two circular granularities $C_1$ and $C_2$ with modular period $m_1$ and $m_2$, 
+For two circular granularities $C_1$ and $C_2$ with modular period $m_1$ and $m_2$ ---->
 
-choosing $m_1, m_2 >1$, such that  $m_1m_2 < T/k$ will lead to non-functional Empty combinations, where k>30 (approx) for density estimates and T is the number of observations for given time index.
+Choosing $m_1, m_2 >1$, such that  $m_1m_2 < T/k$ will lead to non-functional Empty combinations, where k>30 (approx) for density estimates and T is the number of observations for given time index.
 
 ### WIP (Finding comprehensive list of rules that objectively guide us to choose Harmonies)
 ]
