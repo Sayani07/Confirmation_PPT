@@ -186,38 +186,27 @@ class: middle center
 ]
 
 .pull-right[
-```{r linear-cyclic, echo=FALSE, fig.height=7, fig.width = 5}
+```{r linear-cyclic, echo=FALSE, fig.height=4, fig.width = 4}
 library(fpp2)
-q1 <- autoplot(hsales) + xlab("Year") + ggtitle(" a) Linear arrangement of time") + ylab("")
-q2 <- ggseasonplot(hsales, polar=TRUE,year.labels = FALSE) +
-  ggtitle(" b) Cyclic arrangement of time")
+q1 <- autoplot(hsales) + xlab("Year") + ylab("")
+# q2 <- ggseasonplot(hsales, polar=TRUE,year.labels = FALSE) +
+#   ggtitle(" b) Cyclic arrangement of time")
+q1 
+# 
+# grid.arrange(q1,q2, nrow = 2)
 
-grid.arrange(q1,q2, nrow = 2)
-
+```
+```{r circular, echo=FALSE, out.width="50%"}
+knitr::include_graphics("circular.png")
 ```
 ]
 
- 
----
-class: middle left
-
-# <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
-
-## Data description: 
-**Source** ~  Buildings and Property Division at Monash University  
-<br>
-**Frequency** ~ 30 minutes interval smart meter data of Monash 
-Residential Services  
-<br>
-**Time frame** ~ April 4, 2018 to May 31, 2018  
-<br>
-**Spread** ~ 73 living units (B1 05 and B4 29 chosen for analysis)  
 ---
 class: top center
 
 
 # <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
-<font size="-1"> **Frequency** ~ 30 minutes interval smart meter data of Monash Residential Services, <font size="-1"> **Time frame** ~ April 4, 2018 to May 31, 2018, <font size="-1"> **Spread** ~ 73 living units
+<font size="-1"> **Source** ~ Buildings and Property Division at Monash University  **Frequency** ~ 30 minutes interval smart meter data of Monash Residential Services, <font size="-1"> **Time frame** ~ April 4, 2018 to May 31, 2018, <font size="-1"> **Spread** ~ 73 living units
 ```{r okaygraph1,fig.height=6, fig.width=4, echo=FALSE}
 # Data_Halls_Residence <- read_csv("NRAS Treatment Group Data Export_2018-05-31-15-57-41.csv")
 # 
@@ -442,8 +431,6 @@ class: middle left
 ## Why Harmonies work and Clashes don't?
 
 - Nature of circular time granularities and their relationship in terms of mapping to calendars
-<br>
-
 
 ## Need to formalize the theory of granularities to study their properties
 
