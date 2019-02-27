@@ -206,7 +206,7 @@ class: top center
 
 
 # <span style="color:DarkBlue"> Visualizing distributions across circular granularities (I)
-<font size="-1"> **Source** ~ Buildings and Property Division at Monash University  **Frequency** ~ 30 minutes interval smart meter data of Monash Residential Services, <font size="-1"> **Time frame** ~ April 4, 2018 to May 31, 2018, <font size="-1"> **Spread** ~ 73 living units
+<font size="3"> **Source** ~ Buildings and Property Division at Monash University  **Frequency** ~ 30 minutes interval smart meter data of Monash Residential Services, <font size="3"> **Time frame** ~ April 4, 2018 to May 31, 2018, <font size="-1"> **Spread** ~ 73 living units
 ```{r okaygraph1,fig.height=6, fig.width=4, echo=FALSE}
 # Data_Halls_Residence <- read_csv("NRAS Treatment Group Data Export_2018-05-31-15-57-41.csv")
 # 
@@ -249,7 +249,7 @@ p4 = SU_uniform_mutate %>% filter(Source=="B4 29") %>%
   ylab("Daily Consumpttion in KwH") +
   xlab("Hour-of-Day") +  
     coord_cartesian(xlim= c(0,23), ylim = c(0,0.75))+ scale_x_discrete(breaks=c(0,5,10,15,20))+  ggtitle("B4 29")+ ggtitle("Across Day-of-Week and Hour-of-Day") + theme(
-plot.title = element_text(color="red", size=14, face="bold.italic"),axis.title=element_text(size=14,face="bold"))
+plot.title = element_text(color="red", size=10, face="bold.italic"),axis.title=element_text(size=10,face="bold"))
 
 s1 <- SU_uniform_mutate %>%
   mutate(work = ifelse(date %in% vic_holidays$date, "No", work))
@@ -263,7 +263,7 @@ b2_Quantile <- s1 %>% filter(Source=="B4 29") %>% group_by(work,hour) %>%
    })
 
 p6 <- b2_Quantile %>% ggplot(aes(x=hour,y=Value,col=as.factor(Quantile))) +geom_line() + scale_x_continuous(breaks=seq(1, 24, 5)) +theme(legend.position = "bottom") + facet_wrap(~work, labeller = "label_both") + ylab("Daily Consumpttion in KwH") +  xlab("Hour-of-Day") + coord_cartesian(ylim = c(0,0.75)) +  ggtitle("B4 29") + ggtitle("Across Hour-of-Day and Work-Day/Non-Work-Day") + theme(
-plot.title = element_text(color="red", size=14, face="bold.italic"),axis.title=element_text(size=14,face="bold"))
+plot.title = element_text(color="red", size=10, face="bold.italic"),axis.title=element_text(size=10,face="bold"))
 
 # grid.arrange(p2,p4,p6, ncol=3, widths = 4, heights = 6)
 ```
@@ -273,14 +273,15 @@ plot.title = element_text(color="red", size=14, face="bold.italic"),axis.title=e
  p2
 ```
 ]
+--
 .right-column[
 .pull-left[
-```{r b429-12,fig.height=4, fig.width=6, echo=FALSE}
+```{r b429-12,fig.height=6, fig.width=4, echo=FALSE}
 p4
 ```
 ]
 .pull-right[
-```{r b429-13,fig.height=4, fig.width=6, echo=FALSE}
+```{r b429-13,fig.height=6, fig.width=4, echo=FALSE}
 p6
 ```
 ]
