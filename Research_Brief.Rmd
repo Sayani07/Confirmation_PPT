@@ -24,6 +24,10 @@ library(forecast)
 library(lubridate)
 library(lvplot)
 library(gridExtra)
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(readtext)
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=8))
 ```
 
@@ -57,18 +61,22 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, de
 
 ## Exploratory Data Analysis (EDA)
 
-<font size="4"> Visualization of probability distributions of deconstructed temporal data 
+<span style="color: #808000"> Visualization of probability distributions of deconstructed temporal data - effect of time
 
-<span style="color: Crimson">  <font size="6"> 
+<span style="color: #4682B4"> Spatio-temporal granularities and probability distribution plots -  effect of time & space
 
-**+** <span style="color:Black"> <font size="4">  Spatio-temporal granularities <span style="color:Crimson">
-
-<font size="6"> **+** <span style="color:Black"> <font size="4">
-
-Clustering algorithms for grouping probability distributions 
+<span style="color: DarkMagenta"> Clustering algorithms for grouping probability distributions on spatio-temporal granularities- finding similar pockets
 
 
-
-
-
+```{r, echo=FALSE}
+wordbase <- readtext("/Users/sgup0008/Documents/ProViz_TimeGrans/_book/thesis_proviz.pdf")
+corp <- Corpus(VectorSource(wordbase))
+corp <- tm_map(corp, PlainTextDocument)
+corp <- tm_map(corp, removePunctuation)
+corp <- tm_map(corp, removeNumbers)
+corp <- tm_map(corp, tolower)
+corp <- tm_map(corp, removeWords, stopwords(kind = "en"))
+color <- brewer.pal(8,"Spectral")
+wordcloud(corp, max.words = 70, min.freq=15, random.order = FALSE, colors = color)
+```
 ]
