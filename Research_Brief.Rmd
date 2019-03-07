@@ -1,0 +1,74 @@
+---
+title: "Visualisation and analysis of probability distributions of variables defined on  spatio-temporal granularities"
+type: "meetup"
+author: "<br> Sayani Gupta <br> <br> Supervisors: &nbsp; Prof. Rob J Hyndman &nbsp; &nbsp; Prof. Dianne Cook &nbsp; &nbsp; Dr. Peter Toscas"
+date: <font size="5"> Department of Econometrics and Business Statistics <br> February 28, 2019
+output:
+  xaringan::moon_reader:
+    css: ["default", "data_viz_theme.css"]
+    self_contained: false
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(sugrrants)
+library(tsibble)
+library(ggridges)
+library(viridis)
+library(forecast)
+library(lubridate)
+library(lvplot)
+library(gridExtra)
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE, dev.args=list(bg=grey(0.9), pointsize=8))
+```
+
+
+## <span style="color: DarkBlue"> Visualisation and analysis of probability distributions of variables defined on  spatio-temporal granularities
+
+### <span style="color: Crimson"> Sayani Gupta
+
+.pull-left[
+
+
+## Motivation 
+
+** Electricity Smart Meter Technology** Meters recording electricity usage (per kWh) every 15 or 30 minutes
+
+**Consumers** to save considerably on their electricity bill 
+
+**Retailers** to reduce costs and increase efficiency
+
+## Data Description
+
+<span style="color: Crimson"> **Type**:<span style="color: Black"> Spatio - Temporal Data
+<span style="color: Crimson">**Frequency**:<span style="color: Black"> Half hourly interval meter reading for 14K (approx.)
+<span style="color: Crimson">**Time spread**:<span style="color: Black"> 2012 to 2014
+<span style="color: Crimson">**Space spread**: <span style="color: Black"> households based in Newcastle, New South Wales, and parts of Sydney
+<span style="color: Crimson">**Volume**: <span style="color: Black"> 40 billion half hourly observations
+
+]
+
+.pull-right[
+
+## Exploratory Data Analysis (EDA)
+
+<font size="4"> Visualization of probability distributions of deconstructed temporal data 
+
+<span style="color: Crimson">  <font size="6"> 
+
+**+** <span style="color:Black"> <font size="4">  Spatio-temporal granularities <span style="color:Crimson">
+
+<font size="6"> **+** <span style="color:Black"> <font size="4">
+
+Clustering algorithms for grouping probability distributions 
+
+
+
+
+
+]
